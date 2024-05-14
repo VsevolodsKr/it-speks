@@ -4,7 +4,7 @@
             <router-link to="/"><img class="h-12" src="../../images/LOGO.png" alt="it speks logo"></router-link>
         </div>
         <div class="flex gap-12">
-            <a href="">Par mums</a>
+            <router-link to="/about">Par mums</router-link>
             <a href="">Vakances</a>
             <a href="">Aktualitātes</a>
             <router-link to="/login">Ielogoties</router-link>

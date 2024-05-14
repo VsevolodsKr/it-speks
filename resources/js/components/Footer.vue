@@ -35,7 +35,7 @@
                     </div>
                     <div class="flex gap-2">
                         <i class="fa-solid fa-circle-info text-xl"></i>
-                        <a href="" class="underline hover:text-lime-600 transition-colors"> Par mums</a>
+                        <router-link to="/about" class="underline hover:text-lime-600 transition-colors">Par mums</router-link>
                     </div>
                     <div class="flex gap-2">
                         <i class="fa-solid fa-briefcase text-xl"></i>
