@@ -31,7 +31,7 @@
                 <div class="flex flex-col gap-4">
                     <div class="flex gap-2">
                         <i class="fa-solid fa-house text-xl"></i>
-                        <a href="" class="underline hover:text-lime-600 transition-colors"> Galvena sadaļa</a>
+                        <router-link to="/" class="underline hover:text-lime-600 transition-colors">Galvena sadaļa</router-link>
                     </div>
                     <div class="flex gap-2">
                         <i class="fa-solid fa-circle-info text-xl"></i>
