@@ -47,7 +47,7 @@
                     </div>
                     <div class="flex gap-2">
                         <i class="fa-solid fa-user text-xl"></i>
-                        <a href="" class="underline hover:text-lime-600 transition-colors"> Ielogoties</a>
+                        <router-link to="/login" class="underline hover:text-lime-600 transition-colors">Ielogoties</router-link>
                     </div>
                 </div>
             </div>
