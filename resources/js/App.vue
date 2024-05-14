@@ -1,5 +1,3 @@
 <template>
-    <h1 class="font-bold text-xl">
-        hellow 
-    </h1>
+    <router-view class="bg-gray-200 transition-all"> </router-view>
 </template>
