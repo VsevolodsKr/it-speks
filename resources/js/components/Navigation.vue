@@ -7,7 +7,7 @@
         </div>
         <div class="flex gap-12">
             <a href="">Par mums</a>
-            <a href="">Vakances</a>
+            <router-link to="/vacancies">Vakances</router-link>
             <a href="">Aktualitātes</a>
             <router-link to="/login">Ielogoties</router-link>
         </div>
