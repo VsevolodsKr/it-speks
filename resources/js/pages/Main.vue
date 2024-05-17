@@ -33,6 +33,11 @@
         <!-- row 2 -->
         <div>
             <h1 class="font-bold text-3xl text-center">Jaunākas vakances</h1>
+
+            <div class="flex justify-evenly my-8">
+                <Block v-for="vac in threeVac" :title="vac.title" :desc="vac.desc" :btnTitle="'Pieteikties'" />
+            </div>
+
             <p class="text-center font-bold">Neder? <a href="" class="underline text-calm-green font-bold">Apskatīt
                     vairāk</a></p>
         </div>
@@ -66,6 +71,11 @@
         <!-- row 4 -->
         <div>
             <h1 class="font-bold text-3xl text-center">Jaunākas aktualitātes</h1>
+
+            <div class="flex justify-evenly my-8">
+                <Block v-for="vac in threeAkt" :title="vac.title" :desc="vac.desc" :btnTitle="'Apskatit'" />
+            </div>
+
             <p class="font-bold text-center">Meklē kaut ko vēl? <a href=""
                     class="underline text-calm-green font-bold">Apskatīt
                     vairāk</a></p>
@@ -77,11 +87,46 @@
 
 import Wrapper from '../components/Wrapper.vue';
 import CustomButton from '../components/CustomButton.vue';
+import Block from '../components/Block.vue';
 
 export default {
+    data: () => {
+        return {
+            threeVac: [
+                {
+                    title: 'Pirmā vakance',
+                    desc: 'apraksts1',
+                },
+                {
+                    title: 'Otrā vakance',
+                    desc: 'apraksts2',
+                },
+                {
+                    title: 'Trešā vakance',
+                    desc: 'apraksts3',
+                },
+            ],
+
+            threeAkt: [
+                {
+                    title: 'Pirmā aktualitate',
+                    desc: 'apraksts1',
+                },
+                {
+                    title: 'Otrā aktualitate',
+                    desc: 'apraksts2',
+                },
+                {
+                    title: 'Trešā aktualitate',
+                    desc: 'apraksts3',
+                },
+            ],
+        }
+    },
     components: {
         Wrapper,
         CustomButton,
+        Block,
     }
 }
 </script>
