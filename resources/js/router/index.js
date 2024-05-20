@@ -4,6 +4,9 @@ import Main from "../pages/Main.vue";
 import About from "../pages/About.vue";
 import New from "../pages/New.vue";
 import Vacancy from "../pages/Vacancy.vue";
+
+import Vacancies from "../pages/Vacancies.vue";
+import News from "../pages/News.vue";
 const routes = [
     {
         path: "/",
@@ -24,6 +27,14 @@ const routes = [
     {
         path: "/vacancy",
         component: Vacancy,
+    },
+    {
+        path: "/vacancies",
+        component: Vacancies,
+    },
+    {
+        path: "/news",
+        component: News,
     },
 ];
 const router = createRouter({
