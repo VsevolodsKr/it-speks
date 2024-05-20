@@ -14,19 +14,19 @@
         <div class="flex flex-col gap-12 justify-center">
             <div class="flex gap-2">
                 <i class="fa-solid fa-phone text-2xl"></i>
-                <p class="underline hover:text-lime-600 transition-colors text-2xl tracking-[3px]">Tālrunis: +371 21234567</p>
+                <p class="text-2xl">Tālrunis: +371 21234567</p>
             </div>
             <div class="flex gap-2">
                 <i class="fa-solid fa-location-dot text-2xl"></i>
-                <p class="underline hover:text-lime-600 transition-colors text-2xl tracking-[3px]">Adrese: Lielā iela 7,Liepāja, Latvija</p>
+                <p class="text-2xl">Adrese: Lielā iela 7,Liepāja, Latvija</p>
             </div>
             <div class="flex gap-2">
                 <i class="fa-brands fa-facebook text-2xl"></i>
-                <p class="underline hover:text-lime-600 transition-colors text-2xl tracking-[3px]">/itspekslv</p>
+                <p class="text-2xl">/itspekslv</p>
             </div>
             <div class="flex gap-2">
                 <i class="fa-brands fa-linkedin text-2xl"></i>
-                <p class="underline hover:text-lime-600 transition-colors text-2xl tracking-[3px]">/itspekslv</p>
+                <p class="text-2xl">/itspekslv</p>
             </div>
         </div>   
         <div class="flex flex-col justify-center font-bold tracking-wide">

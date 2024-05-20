@@ -23,7 +23,7 @@
                 <TextField :type="'tel'" :placeholder="'Tālrunis'" class="w-full"/>                
                 <TextField :type="'email'" :placeholder="'E-pasts'" class="w-full"/>   
                 <TextArea :placeholder="'Papildinformācija'" class="w-full"/>
-                <CustomButton :title="'Pievienot dokumentu'" class="w-full mb-5"/>
+                <CustomButton :title="'Pievienot dokumentu'" :gray="true" class="w-full mb-5"/>
                 <CustomButton :title="'Pieteikties'" class="w-full"/>
             </form>
         </div>
