@@ -18,11 +18,11 @@
             <img src="../../images/main2.png">
             <h3 class="font-bold text-2xl text-center mt-10">Pieteikties vakancei<br>Front-end developer</h3>
             <form class="flex flex-col items-center" method="post">
-                <input type="text" name="name" placeholder="Vārds" class="w-full my-3 border-2 border-solid border-[gainsboro] rounded-md p-3 tracking-[3px]" requried>
-                <input type="text" name="surname" placeholder="Uzvārds" class="w-full my-3 border-2 border-solid border-[gainsboro] rounded-md p-3 tracking-[3px]" requried>
-                <input type="tel" name="phone" placeholder="Tālrunis" class="w-full my-3 border-2 border-solid border-[gainsboro] rounded-md p-3 tracking-[3px]" requried>
-                <input type="email" name="email" placeholder="Epasts" class="w-full my-3 border-2 border-solid border-[gainsboro] rounded-md p-3 tracking-[3px]" requried>
-                <textarea name="comments" cols="30" rows="8" placeholder="Papildinformācija" class="w-full my-3 border-2 border-solid border-[gainsboro] rounded-md p-3 tracking-[3px] resize-none"></textarea>
+                <TextField :type="'text'" :placeholder="'Vārds'" class="w-full"/>
+                <TextField :type="'text'" :placeholder="'Uzvārds'" class="w-full"/>               
+                <TextField :type="'tel'" :placeholder="'Tālrunis'" class="w-full"/>                
+                <TextField :type="'email'" :placeholder="'E-pasts'" class="w-full"/>   
+                <TextArea :placeholder="'Papildinformācija'" class="w-full"/>
                 <CustomButton :title="'Pievienot dokumentu'" class="w-full mb-5"/>
                 <CustomButton :title="'Pieteikties'" class="w-full"/>
             </form>
@@ -31,12 +31,16 @@
 </Wrapper>
 </template>
 <script>
-    import Wrapper from "../components/Wrapper.vue";
-    import CustomButton from "../components/CustomButton.vue";
+    import Wrapper from "../components/Wrapper.vue"
+    import CustomButton from "../components/CustomButton.vue"
+    import TextField from "../components/TextField.vue"
+    import TextArea from "../components/TextArea.vue"
     export default{
         components: {
             Wrapper,
             CustomButton,
+            TextField,
+            TextArea,
         }
     }
 </script>
