@@ -39,11 +39,11 @@
                     </div>
                     <div class="flex gap-2">
                         <i class="fa-solid fa-briefcase text-xl"></i>
-                        <a href="" class="underline hover:text-lime-600 transition-colors"> Vakances</a>
+                        <router-link to="/vacancies" class="underline hover:text-lime-600 transition-colors">Vakances</router-link>
                     </div>
                     <div class="flex gap-2">
                         <i class="fa-solid fa-newspaper text-xl"></i>
-                        <a href="" class="underline hover:text-lime-600 transition-colors"> Aktualitātes</a>
+                        <router-link to="/news" class="underline hover:text-lime-600 transition-colors">Aktualitātes</router-link>
                     </div>
                     <div class="flex gap-2">
                         <i class="fa-solid fa-user text-xl"></i>
