@@ -7,6 +7,7 @@ import Vacancy from "../pages/Vacancy.vue";
 
 import Vacancies from "../pages/Vacancies.vue";
 import News from "../pages/News.vue";
+import AdminPanel from "../pages/AdminPanel.vue";
 const routes = [
     {
         path: "/",
@@ -35,6 +36,10 @@ const routes = [
     {
         path: "/news",
         component: News,
+    },
+    {
+        path: "/admin",
+        component: AdminPanel,
     },
 ];
 const router = createRouter({
