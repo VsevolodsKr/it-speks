@@ -27,11 +27,16 @@
         <div v-if="current == 0" class="flex flex-col gap-12">
             <TableApplications />
         </div>
+        <!-- Vakances -->
+        <div v-if="current == 1" class="flex flex-col gap-12 ">
+            <TableVacancies />
+        </div>
     </Wrapper>
 </template>
 <script>
 import Wrapper from '../components/Wrapper.vue';
 import TableApplications from '../components/TableApplications.vue';
+import TableVacancies from '../components/TableVacancies.vue';
 export default {
     data: () => {
         return {
@@ -45,6 +50,7 @@ export default {
     components: {
         Wrapper,
         TableApplications,
+        TableVacancies,
     },
 
 }
