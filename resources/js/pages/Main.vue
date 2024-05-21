@@ -16,7 +16,7 @@
                     turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed
                     euismod nisi porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id</p>
 
-                <CustomButton v-on:button-clicked="console.log('got')" :title="'Apskatīt vakances'"></CustomButton>
+                <CustomButton @click="this.$router.push('/vacancies')" :title="'Apskatīt vakances'"></CustomButton>
             </div>
 
             <!-- col2 -->
@@ -38,8 +38,10 @@
                 <Block v-for="vac in threeVac" :title="vac.title" :desc="vac.desc" :btnTitle="'Pieteikties'" />
             </div>
 
-            <p class="text-center font-bold">Neder? <a href="" class="underline text-calm-green font-bold">Apskatīt
-                    vairāk</a></p>
+            <p class="text-center font-bold">Neder?
+                <router-link @click="scrollToTop" to="/vacancies" class="underline text-calm-green font-bold">Apskatīt
+                    vairāk</router-link>
+            </p>
         </div>
 
         <!-- row 3 -->
@@ -64,7 +66,7 @@
                     semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus
                     proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi
                     tristique senectus et netus et malesuada fames ac turpis egestas sed</p>
-                <CustomButton :title="'Apskatīt aktualitātes'" />
+                <CustomButton @click="this.$router.push('/news')" :title="'Apskatīt aktualitātes'" />
             </div>
         </div>
 
@@ -76,9 +78,10 @@
                 <Block v-for="vac in threeAkt" :title="vac.title" :desc="vac.desc" :btnTitle="'Apskatit'" />
             </div>
 
-            <p class="font-bold text-center">Meklē kaut ko vēl? <a href=""
-                    class="underline text-calm-green font-bold">Apskatīt
-                    vairāk</a></p>
+            <p class="font-bold text-center">Meklē kaut ko vēl?
+                <router-link @click="scrollToTop" to="/news" class="underline text-calm-green font-bold">Apskatīt
+                    vairāk</router-link>
+            </p>
         </div>
 
     </Wrapper>
@@ -127,6 +130,11 @@ export default {
         Wrapper,
         CustomButton,
         Block,
+    },
+    methods: {
+        scrollToTop() {
+            window.scrollTo(0, 0);
+        }
     }
 }
 </script>
