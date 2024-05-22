@@ -22,14 +22,6 @@ const routes = [
         component: About,
     },
     {
-        path: "/new",
-        component: New,
-    },
-    {
-        path: "/vacancy",
-        component: Vacancy,
-    },
-    {
         path: "/vacancies",
         component: Vacancies,
     },
@@ -42,6 +34,7 @@ const routes = [
         component: AdminPanel,
     },
     { path: "/vacancies/:id", component: Vacancy },
+    { path: "/news/:id", component: New },
 ];
 const router = createRouter({
     history: createWebHistory(),

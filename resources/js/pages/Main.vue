@@ -129,7 +129,7 @@ export default {
                     desc: 'apraksts2',
                 },
                 {
-                    id: 3,
+                    id: 2,
                     title: 'Trešā aktualitate',
                     desc: 'apraksts3',
                 },
