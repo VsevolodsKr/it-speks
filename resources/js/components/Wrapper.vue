@@ -1,7 +1,7 @@
 <!-- This component is the base for all pages -->
 
 <template>
-    <div class="bg-gray-200 pb-16">
+    <div class="bg-gray-200 dark:bg-slate-950 pb-16 pt-16">
         <Navigation />
         <Workspace>
             <slot></slot>

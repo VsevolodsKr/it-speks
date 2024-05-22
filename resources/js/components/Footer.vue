@@ -62,10 +62,15 @@
 
         <!-- logo -->
         <div>
-            <img class="mt-16" src="../../images/LOGO.png">
+            <img v-if="!isDark" class="mt-16" src="../../images/LOGO.png">
+            <img v-else class="mt-16" src="../../images/LOGO-dark.png">
             <p class="text-center tracking-widest mt-16">IT Spēks &copy; 2024</p>
         </div>
     </footer>
 </template>
+<script setup>
+import { useDark } from '@vueuse/core';
+const isDark = useDark();
 
+</script>
 <script></script>

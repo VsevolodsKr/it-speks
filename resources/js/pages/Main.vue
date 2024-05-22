@@ -2,7 +2,7 @@
     <Wrapper>
         <!-- row1 -->
         <div
-            class="flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row">
+            class="flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row text-black dark:text-gray-50">
             <!-- col1 -->
             <div>
                 <!-- title -->
@@ -22,7 +22,7 @@
             </div>
 
             <!-- col2 -->
-            <div class="flex flex-col items-end font-bold tracking-wide">
+            <div class="flex flex-col items-end font-bold tracking-wide  ">
                 <img class="min-[640px]:max-w-7xl " src="../../images/main1.png" alt="welcome image">
                 <p>Bildes autors: <a class="underline"
                         href="https://unsplash.com/@olenkasergienko?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Olena
@@ -33,7 +33,7 @@
         </div>
 
         <!-- row 2 -->
-        <div>
+        <div class="text-black dark:text-gray-50">
             <h1 class="font-bold text-3xl text-center">Jaunākas vakances</h1>
 
             <div class="flex justify-evenly my-8 max-[768px]:flex-col gap-5 md:flex-col items-center 2xl:flex-row">
@@ -59,7 +59,7 @@
                 </p>
             </div>
             <!-- rcol -->
-            <div>
+            <div class="text-black dark:text-gray-50">
                 <h1 class="font-bold text-3xl">Kas jauns?</h1>
                 <p class="my-10">nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed
                     velit dignissim
@@ -75,7 +75,7 @@
         </div>
 
         <!-- row 4 -->
-        <div>
+        <div class="text-black dark:text-gray-50">
             <h1 class="font-bold text-3xl text-center">Jaunākas aktualitātes</h1>
 
             <div class="flex justify-evenly my-8 max-[768px]:flex-col gap-5 md:flex-col items-center 2xl:flex-row">
@@ -90,6 +90,12 @@
 
     </Wrapper>
 </template>
+
+<script setup>
+import { useDark } from '@vueuse/core';
+const isDark = useDark();
+
+</script>
 <script>
 
 import Wrapper from '../components/Wrapper.vue';
