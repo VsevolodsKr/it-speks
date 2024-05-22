@@ -1,8 +1,8 @@
 <template>
     <Wrapper>
         <div>
-            <h1 class="font-bold text-3xl text-center">Ielogoties</h1>
-            <p class="text-center text-2xl mb-9">Ieeja administratoriem un moderatoriem</p>
+            <h1 class="font-bold text-3xl text-center text-black dark:text-gray-50">Ielogoties</h1>
+            <p class="text-center text-2xl mb-9 text-black dark:text-gray-50">Ieeja administratoriem un moderatoriem</p>
             <form class="flex flex-col items-center" method="post">
                 <TextField :type="'text'" :placeholder="'Lietotājvārds'" class="" />
                 <TextField :type="'password'" :placeholder="'Parole'" class="" />

@@ -1,6 +1,7 @@
 <template>
     <Wrapper>
-        <div class="a flex justify-between gap-28 max-md:flex-col lg:flex-row items-center">
+        <div
+            class="a flex justify-between gap-28 max-md:flex-col lg:flex-row items-center text-black dark:text-gray-50">
             <div>
                 <h1 class="font-bold text-3xl">Par mums</h1>
                 <p class="my-5">ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus
@@ -12,11 +13,13 @@
                     porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id</p>
             </div>
             <div class="flex flex-col justify-center font-bold tracking-wide">
-                <img class="md:max-w-96 lg:max-w-7xl" src="../../images/logo.png" alt="welcome image">
+                <img v-if="isDark" class="md:max-w-96 lg:max-w-7xl" src="../../images/logo-dark.png"
+                    alt="welcome image">
+                <img v-else class="md:max-w-96 lg:max-w-7xl" src="../../images/logo.png" alt="welcome image">
             </div>
         </div>
-        <h1 class="font-bold text-3xl text-center">Kontakti</h1>
-        <div class="a flex justify-evenly gap-28 max-md:flex-col lg:flex-row items-center">
+        <h1 class="font-bold text-3xl text-center text-black dark:text-gray-50">Kontakti</h1>
+        <div class="a flex justify-evenly gap-28 max-md:flex-col text-black dark:text-gray-50 lg:flex-row items-center">
             <div class="flex flex-col gap-12 justify-center">
                 <div class="flex gap-2">
                     <i class="fa-solid fa-phone text-2xl"></i>
@@ -54,7 +57,11 @@ export default {
     }
 }
 </script>
+<script setup>
+import { useDark } from '@vueuse/core';
+const isDark = useDark();
 
+</script>
 
 <style scoped>
 @media(max-width:675px) {
