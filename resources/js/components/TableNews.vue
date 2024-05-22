@@ -3,33 +3,36 @@
         <h3 class="text-center font-bold">Kopā ir {{ news.length }} aktualitātes</h3>
         <CustomButton :title="'Pievienot aktualitāti'" @click="toggleAdd" />
     </div>
-    <table class="ring-1 ring-gray-300 rounded-md">
-        <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
-            <th>Nosaukums</th>
-        </tr>
-        <tr v-for="n, index in news" :key="index"
-            :class="[(index == news.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
-            <td class="text-center border-r-2 border-gray-300 border-dashed px-48">{{ n.title }}</td>
-            <!-- <td class="text-center border-r-2 border-gray-300 border-dashed">{{ n.shortcontent }}</td>
+    <div class="flex justify-center">
+        <div class="overflow-x-scroll scroll-pl-6 p-5">
+            <table class="ring-1 ring-gray-300 rounded-md  w-max ">
+                <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
+                    <th>Nosaukums</th>
+                </tr>
+                <tr v-for="n, index in news" :key="index"
+                    :class="[(index == news.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
+                    <td class="text-center border-r-2 border-gray-300 border-dashed px-48">{{ n.title }}</td>
+                    <!-- <td class="text-center border-r-2 border-gray-300 border-dashed">{{ n.shortcontent }}</td>
             <td class="text-center border-r-2 border-gray-300 border-dashed">{{ n.content }}</td> -->
-            <td class="text-center border-r-2 border-gray-300 border-dashed p-2">
-                <button
-                    class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                    @click="toggleRead(n)"><i class="fa-solid fa-book-open"></i></button>
-            </td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed p-2">
-                <button
-                    class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                    @click="toggleEdit(n)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
-            </td>
-            <td class="text-center p-2">
-                <button
-                    class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                    @click="toggleDelete(n)"><i class="fa-solid fa-trash"></i></button>
-            </td>
-        </tr>
-    </table>
-
+                    <td class="text-center border-r-2 border-gray-300 border-dashed p-2">
+                        <button
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            @click="toggleRead(n)"><i class="fa-solid fa-book-open"></i></button>
+                    </td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed p-2">
+                        <button
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            @click="toggleEdit(n)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
+                    </td>
+                    <td class="text-center p-2">
+                        <button
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            @click="toggleDelete(n)"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     <!-- hidden DELETE menu -->
     <div v-if="showDelete"
         class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96">

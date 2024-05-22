@@ -6,7 +6,7 @@
                     }}</span>!</h2>
             <h2>Jūs esat: <span class="underline">{{ role == 1 ? "administrators" : "moderators" }}</span></h2>
         </div>
-        <div class="flex justify-evenly">
+        <div class="flex justify-evenly flex-wrap gap-3">
             <h1 :class="[current == 0 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
                 @click="current = 0">
                 Pieteikumi
@@ -32,11 +32,11 @@
             <TableVacancies />
         </div>
         <!-- Aktualitates -->
-        <div v-if="current == 2" class="flex flex-col gap-12 items-center">
+        <div v-if="current == 2" class="flex flex-col gap-12">
             <TableNews />
         </div>
         <!-- Lietotaji -->
-        <div v-if="current == 3" class="flex flex-col gap-12 items-center">
+        <div v-if="current == 3" class="flex flex-col gap-12">
             <TableUsers :role="role" :user="user" />
         </div>
     </Wrapper>

@@ -4,27 +4,30 @@
         <CustomButton v-if="role == 1" :title="'Pievienot lietotāju'" @click="toggleAdd" />
         <CustomButton v-else :title="'Nomainīt paroli'" @click="togglePass" />
     </div>
-    <table class="ring-1 ring-gray-300 rounded-md">
-        <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
-            <th>Lietotājvārds</th>
-        </tr>
-        <tr v-for="u, index in users" :key="index"
-            :class="[(index == users.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10', user.id == u.id ? 'bg-emerald-100' : '']">
-            <td class="text-center border-r-2 border-gray-300 border-dashed px-48">{{ u.username }}</td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed px-5">{{ roles[u.role] }}</td>
-            <td v-if="role == 1" class="text-center border-r-2 border-gray-300 border-dashed p-2">
-                <button
-                    class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                    @click="toggleEdit(u)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
-            </td>
-            <td v-if="role == 1" class="text-center p-2">
-                <button
-                    class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                    @click="toggleDelete(u)"><i class="fa-solid fa-trash"></i></button>
-            </td>
-        </tr>
-    </table>
-
+    <div class="flex justify-center">
+        <div class="overflow-x-scroll scroll-pl-6 p-5">
+            <table class="ring-1 ring-gray-300 rounded-md  w-max ">
+                <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
+                    <th>Lietotājvārds</th>
+                </tr>
+                <tr v-for="u, index in users" :key="index"
+                    :class="[(index == users.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10', user.id == u.id ? 'bg-emerald-100' : '']">
+                    <td class="text-center border-r-2 border-gray-300 border-dashed px-48">{{ u.username }}</td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed px-5">{{ roles[u.role] }}</td>
+                    <td v-if="role == 1" class="text-center border-r-2 border-gray-300 border-dashed p-2">
+                        <button
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            @click="toggleEdit(u)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
+                    </td>
+                    <td v-if="role == 1" class="text-center p-2">
+                        <button
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            @click="toggleDelete(u)"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     <!-- hidden DELETE menu -->
     <div v-if="showDelete"
         class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96">

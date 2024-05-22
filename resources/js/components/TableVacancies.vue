@@ -3,36 +3,40 @@
         <h3 class="text-center font-bold">Kopā ir {{ vacancies.length }} vakances</h3>
         <CustomButton :title="'Pievienot vakanci'" @click="toggleAdd" />
     </div>
-    <table class="ring-1 ring-gray-300 rounded-md">
-        <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
-            <th>Nosaukums</th>
-            <th>Uzņēmums</th>
-            <th>Slodze</th>
-            <th>Atalgojums</th>
-            <th>Vieta</th>
-            <th>Kontakti</th>
-            <th>Apraksts</th>
-        </tr>
-        <tr v-for="v, index in vacancies" :key="index"
-            :class="[(index == vacancies.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
-            <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.title }}</td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.company }}</td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.time }}</td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.salary }}</td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.location }}</td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.contacts }}</td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed">
-                <button
-                    class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                    @click="toggleRead(v)"><i class="fa-solid fa-book-open"></i></button>
-            </td>
-            <td class="text-center">
-                <button
-                    class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                    @click="toggleEdit(v)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
-            </td>
-        </tr>
-    </table>
+    <div class="flex justify-center">
+        <div class="overflow-x-scroll scroll-pl-6 p-5">
+            <table class="ring-1 ring-gray-300 rounded-md  w-max ">
+                <tr class="h-12 ring-1 ring-gray-300 rounded-t-md ">
+                    <th>Nosaukums</th>
+                    <th>Uzņēmums</th>
+                    <th>Slodze</th>
+                    <th>Atalgojums</th>
+                    <th>Vieta</th>
+                    <th>Kontakti</th>
+                    <th>Apraksts</th>
+                </tr>
+                <tr v-for="v, index in vacancies" :key="index"
+                    :class="[(index == vacancies.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
+                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.title }}</td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.company }}</td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.time }}</td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.salary }}</td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.location }}</td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.contacts }}</td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed">
+                        <button
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            @click="toggleRead(v)"><i class="fa-solid fa-book-open"></i></button>
+                    </td>
+                    <td class="text-center">
+                        <button
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            @click="toggleEdit(v)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
 
     <!-- hidden READ menu -->
