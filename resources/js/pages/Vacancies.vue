@@ -5,7 +5,7 @@
         <!-- row 1 -->
         <div>
             <h2 class="text-xl tracking-wider underline">Meklēšana</h2>
-            <form class="items-center gap-3 grid grid-flow-col justify-stretch">
+            <form class="items-center gap-3 flex flex-wrap">
                 <TextField :placeholder="'Vēlamā vakance'" />
                 <Dropdown :elements="cities" />
                 <CustomButton :title="'Meklēt'" />
@@ -15,8 +15,8 @@
         <!-- row 2 -->
         <div>
             <h2 class="text-xl tracking-wider underline">Filtri</h2>
-            <form class="flex flex-col items-end">
-                <div class="gap-3 grid grid-flow-col justify-stretch w-full">
+            <form class="flex flex-col">
+                <div class="gap-3 flex flex-wrap w-full">
                     <!-- amats -->
                     <Dropdown :elements="prof" />
                     <!-- pilseta -->
@@ -26,7 +26,7 @@
                     <!-- atalgojums -->
                     <Dropdown :elements="pay" />
                 </div>
-                <div class="flex gap-5">
+                <div class="flex gap-5 flex-wrap">
                     <CustomButton :title="'Notirīt'" />
                     <CustomButton :title="'Filtrēt'" />
                 </div>
@@ -35,7 +35,7 @@
 
 
         <!-- vacancies -->
-        <div class="grid grid-cols-3 gap-10 justify-center items-center">
+        <div class="grid grid-cols-3 gap-10 justify-center items-center a">
             <Block v-for="vac in vacancies" :title="vac.title" :desc="vac.desc" :btnTitle="vac.btnTitle" />
         </div>
 
@@ -98,3 +98,13 @@ export default {
     }
 }
 </script>
+
+
+<style scoped>
+@media(max-width:1515px) {
+    .a {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+</style>
