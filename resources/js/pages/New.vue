@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
-        <h1 v-if="current" class="font-bold text-3xl text-center">{{ current.title }}</h1>
+        <h1 v-if="current" class="font-bold text-3xl text-center text-black dark:text-gray-50">{{ current.title }}</h1>
         <div v-if="current">
             <img src="../../images/main2.png" class="float-left max-w-96 mr-16">
-            <p class="text-justify mx-16 leading-7 indent-16">{{ current.description }}</p>
+            <p class="text-justify mx-16 leading-7 indent-16 text-black dark:text-gray-50">{{ current.description }}</p>
         </div>
     </Wrapper>
 </template>

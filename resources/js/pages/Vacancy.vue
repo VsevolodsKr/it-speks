@@ -1,6 +1,6 @@
 <template>
     <Wrapper>
-        <div class="flex justify-around gap-10">
+        <div class="flex justify-around gap-10 text-black dark:text-gray-50">
             <div v-if="current" class="w-1/2">
                 <h1 class="font-bold text-4xl mb-10">{{ current.title }}</h1>
                 <h3 class="font-bold text-2xl">Uzņēmums:</h3>
