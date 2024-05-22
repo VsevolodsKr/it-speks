@@ -1,10 +1,10 @@
 <template>
     <Wrapper>
-        <h1 class="text-3xl font-bold text-center">Vakances</h1>
+        <h1 class="text-3xl font-bold text-center dark:text-gray-50 text-black">Vakances</h1>
 
         <!-- row 1 -->
         <div>
-            <h2 class="text-xl tracking-wider underline">Meklēšana</h2>
+            <h2 class="text-xl tracking-wider underline dark:text-gray-50 text-black">Meklēšana</h2>
             <form class="items-center gap-3 flex flex-wrap">
                 <TextField :placeholder="'Vēlamā vakance'" />
                 <Dropdown :elements="cities" />
@@ -14,7 +14,7 @@
 
         <!-- row 2 -->
         <div>
-            <h2 class="text-xl tracking-wider underline">Filtri</h2>
+            <h2 class="text-xl tracking-wider underline dark:text-gray-50 text-black">Filtri</h2>
             <form class="flex flex-col">
                 <div class="gap-3 flex flex-wrap w-full">
                     <!-- amats -->
