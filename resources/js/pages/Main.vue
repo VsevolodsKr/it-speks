@@ -1,7 +1,8 @@
 <template>
     <Wrapper>
         <!-- row1 -->
-        <div class="flex justify-between gap-28">
+        <div
+            class="flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row">
             <!-- col1 -->
             <div>
                 <!-- title -->
@@ -16,12 +17,13 @@
                     turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed
                     euismod nisi porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id</p>
 
-                <CustomButton @click="this.$router.push('/vacancies')" :title="'Apskatīt vakances'"></CustomButton>
+                <CustomButton @click="() => { this.$router.push('/vacancies'); scrollToTop(); }"
+                    :title="'Apskatīt vakances'"></CustomButton>
             </div>
 
             <!-- col2 -->
             <div class="flex flex-col items-end font-bold tracking-wide">
-                <img class="max-w-7xl" src="../../images/main1.png" alt="welcome image">
+                <img class="min-[640px]:max-w-7xl " src="../../images/main1.png" alt="welcome image">
                 <p>Bildes autors: <a class="underline"
                         href="https://unsplash.com/@olenkasergienko?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Olena
                         Bohovyk</a> no <a class="underline"
@@ -34,7 +36,7 @@
         <div>
             <h1 class="font-bold text-3xl text-center">Jaunākas vakances</h1>
 
-            <div class="flex justify-evenly my-8">
+            <div class="flex justify-evenly my-8 max-[768px]:flex-col gap-5 md:flex-col items-center 2xl:flex-row">
                 <Block v-for="vac in threeVac" :title="vac.title" :desc="vac.desc" :btnTitle="'Pieteikties'" />
             </div>
 
@@ -45,10 +47,11 @@
         </div>
 
         <!-- row 3 -->
-        <div class="flex justify-between gap-28">
+        <div
+            class="flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row ">
             <!-- lcol -->
             <div class="flex flex-col items-start font-bold tracking-wide">
-                <img class="max-w-7xl" src="../../images/main2.png">
+                <img class="min-[640px]:max-w-7xl" src="../../images/main2.png">
                 <p>Bildes autors: <a class="underline"
                         href="https://unsplash.com/@clemhlrdt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Clément
                         Hélardot</a> no <a class="underline"
@@ -56,7 +59,7 @@
                 </p>
             </div>
             <!-- rcol -->
-            <div class="text-right">
+            <div>
                 <h1 class="font-bold text-3xl">Kas jauns?</h1>
                 <p class="my-10">nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed
                     velit dignissim
@@ -66,7 +69,8 @@
                     semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus
                     proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi
                     tristique senectus et netus et malesuada fames ac turpis egestas sed</p>
-                <CustomButton @click="this.$router.push('/news')" :title="'Apskatīt aktualitātes'" />
+                <CustomButton @click="() => { this.$router.push('/news'); scrollToTop(); }"
+                    :title="'Apskatīt aktualitātes'" />
             </div>
         </div>
 
@@ -74,7 +78,7 @@
         <div>
             <h1 class="font-bold text-3xl text-center">Jaunākas aktualitātes</h1>
 
-            <div class="flex justify-evenly my-8">
+            <div class="flex justify-evenly my-8 max-[768px]:flex-col gap-5 md:flex-col items-center 2xl:flex-row">
                 <Block v-for="vac in threeAkt" :title="vac.title" :desc="vac.desc" :btnTitle="'Apskatit'" />
             </div>
 
