@@ -31,9 +31,13 @@
         <div v-if="current == 1" class="flex flex-col gap-12 ">
             <TableVacancies />
         </div>
-        <!-- Vakances -->
+        <!-- Aktualitates -->
         <div v-if="current == 2" class="flex flex-col gap-12 items-center">
             <TableNews />
+        </div>
+        <!-- Lietotaji -->
+        <div v-if="current == 3" class="flex flex-col gap-12 items-center">
+            <TableUsers :role="role" :user="user" />
         </div>
     </Wrapper>
 </template>
@@ -42,10 +46,14 @@ import Wrapper from '../components/Wrapper.vue';
 import TableApplications from '../components/TableApplications.vue';
 import TableVacancies from '../components/TableVacancies.vue';
 import TableNews from '../components/TableNews.vue';
+import TableUsers from '../components/TableUsers.vue';
 export default {
     data: () => {
         return {
-            username: 'admin_A',
+            username: 'user2',
+            user: {
+                id: 1,
+            },
             role: 1,
             current: 0,
             imagename: null,
@@ -57,6 +65,7 @@ export default {
         TableApplications,
         TableVacancies,
         TableNews,
+        TableUsers
     },
 
 }
