@@ -1,7 +1,7 @@
 <template>
-    <div class="ring-1 ring-gray-300 p-8 py-10 rounded-xl flex gap-44">
+    <div class="ring-1 ring-gray-300 p-8 py-10 rounded-xl flex gap-24 flex-wrap justify-center w-fit">
         <!-- col 1 -->
-        <div class="flex flex-col justify-between items-start">
+        <div class="flex flex-col justify-between items-start max-w-xl">
             <div>
                 <h1 class="font-bold text-5xl mb-8">{{ title }}</h1>
                 <p class="leading-loose">{{ desc }}</p>

@@ -1,7 +1,10 @@
 <template>
     <Wrapper>
         <h1 class="text-3xl font-bold text-center">Aktualitātes</h1>
-        <NewsBlock v-for="n in news" :title="n.title" :desc="n.desc" />
+
+        <div class="flex flex-col items-center gap-5">
+            <NewsBlock v-for="n in news" :title="n.title" :desc="n.desc" />
+        </div>
         <!-- num -->
         <h3 class="text-gray-500 text-center font-bold"><span class="underline">{{ news.length
                 }}</span><br>aktualitātes
