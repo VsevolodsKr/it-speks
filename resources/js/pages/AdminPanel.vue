@@ -7,17 +7,17 @@
             <h2>Jūs esat: <span class="underline">{{ role == 1 ? "administrators" : "moderators" }}</span></h2>
         </div>
         <div class="flex justify-evenly">
-            <h1 :class="[current == 0 ? ' bg-emerald-800 text-white font-bold' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
+            <h1 :class="[current == 0 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
                 @click="current = 0">
                 Pieteikumi
             </h1>
-            <h1 :class="[current == 1 ? ' bg-emerald-800 text-white font-bold' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
+            <h1 :class="[current == 1 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
                 @click="current = 1">
                 Vakances</h1>
-            <h1 :class="[current == 2 ? ' bg-emerald-800 text-white font-bold' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
+            <h1 :class="[current == 2 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
                 @click="current = 2">
                 Aktualitātes</h1>
-            <h1 :class="[current == 3 ? ' bg-emerald-800 text-white font-bold' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
+            <h1 :class="[current == 3 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
                 @click="current = 3">
                 Lietotāji</h1>
         </div>
@@ -31,12 +31,17 @@
         <div v-if="current == 1" class="flex flex-col gap-12 ">
             <TableVacancies />
         </div>
+        <!-- Vakances -->
+        <div v-if="current == 2" class="flex flex-col gap-12 items-center">
+            <TableNews />
+        </div>
     </Wrapper>
 </template>
 <script>
 import Wrapper from '../components/Wrapper.vue';
 import TableApplications from '../components/TableApplications.vue';
 import TableVacancies from '../components/TableVacancies.vue';
+import TableNews from '../components/TableNews.vue';
 export default {
     data: () => {
         return {
@@ -51,6 +56,7 @@ export default {
         Wrapper,
         TableApplications,
         TableVacancies,
+        TableNews,
     },
 
 }
