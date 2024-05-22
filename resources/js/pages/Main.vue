@@ -37,7 +37,7 @@
             <h1 class="font-bold text-3xl text-center">Jaunākas vakances</h1>
 
             <div class="flex justify-evenly my-8 max-[768px]:flex-col gap-5 md:flex-col items-center 2xl:flex-row">
-                <Block v-for="vac in threeVac" :title="vac.title" :desc="vac.desc" :btnTitle="'Pieteikties'" />
+                <Block v-for="vac in threeVac" :data="vac" :route="'vacancies'" :btnTitle="'Pieteikties'" />
             </div>
 
             <p class="text-center font-bold">Neder?
@@ -79,7 +79,7 @@
             <h1 class="font-bold text-3xl text-center">Jaunākas aktualitātes</h1>
 
             <div class="flex justify-evenly my-8 max-[768px]:flex-col gap-5 md:flex-col items-center 2xl:flex-row">
-                <Block v-for="vac in threeAkt" :title="vac.title" :desc="vac.desc" :btnTitle="'Apskatit'" />
+                <Block v-for="akt in threeAkt" :route="'news'" :data="akt" :btnTitle="'Apskatit'" />
             </div>
 
             <p class="font-bold text-center">Meklē kaut ko vēl?
@@ -101,14 +101,17 @@ export default {
         return {
             threeVac: [
                 {
+                    id: 0,
                     title: 'Pirmā vakance',
                     desc: 'apraksts1',
                 },
                 {
+                    id: 1,
                     title: 'Otrā vakance',
                     desc: 'apraksts2',
                 },
                 {
+                    id: 2,
                     title: 'Trešā vakance',
                     desc: 'apraksts3',
                 },
@@ -116,14 +119,17 @@ export default {
 
             threeAkt: [
                 {
+                    id: 0,
                     title: 'Pirmā aktualitate',
                     desc: 'apraksts1',
                 },
                 {
+                    id: 1,
                     title: 'Otrā aktualitate',
                     desc: 'apraksts2',
                 },
                 {
+                    id: 3,
                     title: 'Trešā aktualitate',
                     desc: 'apraksts3',
                 },

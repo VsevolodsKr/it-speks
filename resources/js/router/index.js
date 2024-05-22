@@ -41,6 +41,7 @@ const routes = [
         path: "/admin",
         component: AdminPanel,
     },
+    { path: "/vacancies/:id", component: Vacancy },
 ];
 const router = createRouter({
     history: createWebHistory(),

@@ -36,7 +36,7 @@
 
         <!-- vacancies -->
         <div class="grid grid-cols-3 gap-10 justify-center items-center a">
-            <Block v-for="vac in vacancies" :title="vac.title" :desc="vac.desc" :btnTitle="vac.btnTitle" />
+            <Block v-for="vac in vacancies" :data="vac" :route="'vacancies'" :btnTitle="vac.btnTitle" />
         </div>
 
 
@@ -67,23 +67,21 @@ export default {
             pay: [],
             vacancies: [
                 {
+                    id: 0,
                     title: 'Pirmais',
                     desc: 'pirmais apraksts',
                     btnTitle: 'Pieteikties',
                 },
                 {
+                    id: 1,
                     title: 'Otrais',
                     desc: 'Otrais apraksts',
                     btnTitle: 'Pieteikties',
                 },
                 {
+                    id: 2,
                     title: 'Trešais',
                     desc: 'Trešais apraksts',
-                    btnTitle: 'Pieteikties',
-                },
-                {
-                    title: 'Ceturtais',
-                    desc: 'Ceturtais apraksts',
                     btnTitle: 'Pieteikties',
                 },
             ],
