@@ -7,8 +7,9 @@
         <div class="overflow-x-scroll scroll-pl-6 p-5">
             <table class="ring-1 ring-gray-300 rounded-md  w-max ">
                 <tr class="h-12 ring-1 ring-gray-300 rounded-t-md ">
-                    <th>Nosaukums</th>
-                    <th>Uzņēmums</th>
+                    <th></th>
+                    <th class="px-5">Nosaukums</th>
+                    <th class="px-10">Uzņēmums</th>
                     <th>Slodze</th>
                     <th>Atalgojums</th>
                     <th>Vieta</th>
@@ -17,18 +18,20 @@
                 </tr>
                 <tr v-for="v, index in vacancies" :key="index"
                     :class="[(index == vacancies.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed ', 'h-10']">
-                    <td class="text-center border-r-2 border-gray-300 border-dashed ">{{ v.title }}</td>
-                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.company }}</td>
-                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.time }}</td>
-                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.salary }}</td>
-                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.location }}</td>
-                    <td class="text-center border-r-2 border-gray-300 border-dashed">{{ v.contacts }}</td>
+                    <td class="p-9 text-center border-r-2 border-gray-300 border-dashed "><img :src="v.image"
+                            class="max-w-64 rounded-md"></td>
+                    <td class="px-16 text-center border-r-2 border-gray-300 border-dashed ">{{ v.title }}</td>
+                    <td class="px-16 text-center border-r-2 border-gray-300 border-dashed">{{ v.company }}</td>
+                    <td class="px-10 text-center border-r-2 border-gray-300 border-dashed">{{ v.time }}</td>
+                    <td class="px-16 text-center border-r-2 border-gray-300 border-dashed">{{ v.salary }}</td>
+                    <td class="px-16 text-center border-r-2 border-gray-300 border-dashed">{{ v.location }}</td>
+                    <td class="px-16 text-center border-r-2 border-gray-300 border-dashed">{{ v.contacts }}</td>
                     <td class="text-center border-r-2 border-gray-300 border-dashed">
                         <button
                             class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                             @click="toggleRead(v)"><i class="fa-solid fa-book-open"></i></button>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center px-5">
                         <button
                             class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                             @click="toggleEdit(v)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
@@ -66,6 +69,13 @@
                 <td class="font-bold">Nosaukums</td>
                 <td class="p-4">
                     <input type="text" v-model="current.title"
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                </td>
+            </tr>
+            <tr>
+                <td class="font-bold">Bilde</td>
+                <td class="p-4">
+                    <input type="text" v-model="current.image"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
                 </td>
             </tr>
@@ -136,6 +146,13 @@
                 </td>
             </tr>
             <tr>
+                <td class="font-bold">Bilde</td>
+                <td class="p-4">
+                    <input type="text" v-model="new_v.image"
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                </td>
+            </tr>
+            <tr>
                 <td class="font-bold">Uzņēmums</td>
                 <td class="p-4">
                     <input type="text" v-model="new_v.company"
@@ -196,6 +213,7 @@ export default {
                     salary: '800',
                     location: 'liepaja',
                     contacts: '28536473',
+                    image: 'https://images.unsplash.com/photo-1573496546735-c274b1fd186b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
                 },
                 {
@@ -205,6 +223,7 @@ export default {
                     salary: '1000',
                     location: 'riga',
                     contacts: '28346473',
+                    image: 'https://images.unsplash.com/photo-1573496546735-c274b1fd186b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
                 },
                 {
@@ -214,6 +233,7 @@ export default {
                     salary: '300',
                     location: 'ventspils',
                     contacts: '28565473',
+                    image: 'https://images.unsplash.com/photo-1573496546735-c274b1fd186b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
                 },
             ],
@@ -225,7 +245,8 @@ export default {
                 salary: '',
                 location: '',
                 contacts: '',
-                info: ''
+                info: '',
+                image: ''
 
             },
             showRead: false,

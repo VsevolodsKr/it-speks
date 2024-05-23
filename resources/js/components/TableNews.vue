@@ -7,13 +7,18 @@
         <div class="overflow-x-scroll scroll-pl-6 p-5">
             <table class="ring-1 ring-gray-300 rounded-md  w-max ">
                 <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
+                    <th></th>
                     <th>Nosaukums</th>
+                    <th>Īss apraksts</th>
                 </tr>
                 <tr v-for="n, index in news" :key="index"
                     :class="[(index == news.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
+                    <td class="text-center border-r-2 border-gray-300 border-dashed p-9"><img :src="n.image"
+                            class="max-w-64 rounded-md"></td>
                     <td class="text-center border-r-2 border-gray-300 border-dashed px-48">{{ n.title }}</td>
-                    <!-- <td class="text-center border-r-2 border-gray-300 border-dashed">{{ n.shortcontent }}</td>
-            <td class="text-center border-r-2 border-gray-300 border-dashed">{{ n.content }}</td> -->
+                    <td class="text-center border-r-2 border-gray-300 border-dashed max-w-96 px-8">{{ n.shortcontent }}
+                    </td>
+
                     <td class="text-center border-r-2 border-gray-300 border-dashed p-2">
                         <button
                             class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
@@ -81,6 +86,13 @@
                 </td>
             </tr>
             <tr>
+                <td class="font-bold">Bilde</td>
+                <td class="p-4">
+                    <input type="text" v-model="current.image"
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                </td>
+            </tr>
+            <tr>
                 <td class="font-bold">Īss apraksts</td>
                 <td class="p-4">
                     <textarea v-model="current.shortcontent"
@@ -118,6 +130,13 @@
                 </td>
             </tr>
             <tr>
+                <td class="font-bold">Bilde</td>
+                <td class="p-4">
+                    <input type="text" v-model="new_n.image"
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                </td>
+            </tr>
+            <tr>
                 <td class="font-bold">Īss apraksts</td>
                 <td class="p-4">
                     <textarea v-model="new_n.shortcontent"
@@ -143,16 +162,19 @@ export default {
             news: [
                 {
                     title: 'akt1',
+                    image: 'https://images.unsplash.com/photo-1573497019509-d715a631bbe5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     shortcontent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
                 },
                 {
                     title: 'akt2',
+                    image: 'https://images.unsplash.com/photo-1573497019509-d715a631bbe5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     shortcontent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
                 },
                 {
                     title: 'akt3',
+                    image: 'https://images.unsplash.com/photo-1573497019509-d715a631bbe5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     shortcontent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
                 },
@@ -162,6 +184,7 @@ export default {
                 title: '',
                 shortcontent: '',
                 content: '',
+                image: '',
             },
             showRead: false,
             showAdd: false,
