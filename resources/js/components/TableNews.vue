@@ -50,7 +50,7 @@
         <h3 class="font-bold text-center my-4">Vai Jūs tiešām gribāt nodzēst "{{ current.title }}"?</h3>
         <div class="flex justify-center gap-4 mt-12">
             <CustomButton :title="'Apstiprināt'" :red="true" />
-            <CustomButton :title="'Atcelt'" :gray="true" />
+            <CustomButton @click="toggleDelete" :title="'Atcelt'" :gray="true" />
         </div>
     </div>
 
