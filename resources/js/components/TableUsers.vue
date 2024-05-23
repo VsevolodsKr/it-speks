@@ -149,7 +149,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="font-bold">Īss apraksts</td>
+                <td class="font-bold">Parole</td>
                 <td class="p-4">
                     <textarea v-model="new_u.password"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
