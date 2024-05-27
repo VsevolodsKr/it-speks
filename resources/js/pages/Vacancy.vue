@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
-        <div class="flex justify-around gap-10 text-black dark:text-gray-50">
-            <div v-if="current" class="w-1/2">
+        <div class="flex justify-around gap-10 text-black dark:text-gray-50 max-[1024px]:flex-col max-[1024px]:md:flex-col max-[1024px]:items-center">
+            <div v-if="current" class="w-1/2 max-[1024px]: w-full max-[1024px]: text-left">
                 <h1 class="font-bold text-4xl mb-10">{{ current.title }}</h1>
                 <h3 class="font-bold text-2xl">Uzņēmums:</h3>
                 <p class="text-2xl mb-10">{{ current.company }}</p>
