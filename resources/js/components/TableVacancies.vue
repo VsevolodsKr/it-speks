@@ -31,10 +31,15 @@
                             class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                             @click="toggleRead(v)"><i class="fa-solid fa-book-open"></i></button>
                     </td>
-                    <td class="text-center px-5">
+                    <td class="text-center px-5 border-r-2 border-gray-300 border-dashed">
                         <button
                             class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                             @click="toggleEdit(v)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
+                    </td>
+                    <td class="text-center px-5">
+                        <button
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            @click="toggleDelete(v)"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             </table>
@@ -53,7 +58,20 @@
         <p>{{ current.info }}</p>
     </div>
 
-
+    <!-- hidden DELETE menu -->
+    <div v-if="showDelete"
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-slate-700">
+        <div class="flex justify-between">
+            <h1 class="font-bold text-xl">Nodzēst {{ current.title }}</h1>
+            <button @click="toggleDelete()" class="text-3xl transition-colors hover:text-emerald-600"><i
+                    class="fa-regular fa-circle-xmark"></i></button>
+        </div>
+        <h3 class="font-bold text-center my-4">Vai Jūs tiešām gribāt nodzēst "{{ current.title }}"?</h3>
+        <div class="flex justify-center gap-4 mt-12">
+            <CustomButton :title="'Apstiprināt'" :red="true" />
+            <CustomButton @click="toggleDelete" :title="'Atcelt'" :gray="true" />
+        </div>
+    </div>
     <!-- hidden EDIT menu -->
     <div v-if="showEdit"
         class="text-black dark:text-gray-50 dark:bg-slate-700 ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen">
@@ -252,6 +270,7 @@ export default {
             showRead: false,
             showAdd: false,
             showEdit: false,
+            showDelete: false,
         }
     },
     components: {
@@ -273,6 +292,12 @@ export default {
             this.showEdit = false
             this.showRead = false
             this.showAdd = !this.showAdd
+        },
+        toggleDelete(n) {
+            this.showDelete = !this.showDelete
+            this.showRead = false
+            this.showEdit = false
+            this.current = n;
         }
     }
 }
