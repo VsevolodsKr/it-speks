@@ -10,7 +10,7 @@
                 <h3 class="font-bold text-2xl">Atalgojums:</h3>
                 <p class="text-2xl mb-10">{{ current.salary }}</p>
                 <h3 class="font-bold text-2xl">Pilsēta:</h3>
-                <p class="text-2xl mb-10">{{ current.city }}</p>
+                <p class="text-2xl mb-10">{{ current.location }}</p>
                 <h3 class="font-bold text-2xl">Apraksts:</h3>
                 <p class="text-2xl mb-10">{{ current.description }}</p>
                 <h3 class="font-bold text-2xl">Kontakti:</h3>

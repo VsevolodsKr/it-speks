@@ -88,7 +88,7 @@
             <tr>
                 <td class="font-bold">Nosaukums</td>
                 <td class="p-4">
-                    <input type="text" v-model="current.title"
+                    <input type="text" v-model="edit_v.title"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
                 </td>
             </tr>
@@ -96,42 +96,42 @@
             <tr>
                 <td class="font-bold">Uzņēmums</td>
                 <td class="p-4">
-                    <input type="text" v-model="current.company"
+                    <input type="text" v-model="edit_v.company"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Slodze</td>
                 <td class="p-4">
-                    <input type="text" v-model="current.time"
+                    <input type="text" v-model="edit_v.time"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Atalgojums</td>
                 <td class="p-4">
-                    <input type="text" v-model="current.salary"
+                    <input type="text" v-model="edit_v.salary"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Vieta</td>
                 <td class="p-4">
-                    <input type="text" v-model="current.location"
+                    <input type="text" v-model="edit_v.location"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Kontakti</td>
                 <td class="p-4">
-                    <input type="text" v-model="current.contacts"
+                    <input type="text" v-model="edit_v.contacts"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Apraksts</td>
                 <td class="p-4">
-                    <textarea v-model="current.description"
+                    <textarea v-model="edit_v.description"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
 
                 </td>
@@ -139,11 +139,11 @@
             <tr>
                 <td class="font-bold">Attēls</td>
                 <td class="p-4">
-                    <input type="file" required />
+                    <input type="file" @change="handleFileChange" />
                 </td>
             </tr>
         </table>
-        <CustomButton :title="'Saglabāt'" />
+        <CustomButton @click="editVacancy" :title="'Saglabāt'" />
     </div>
 
 
@@ -240,6 +240,7 @@ export default {
                 description: '',
                 image_path: '',
             },
+            edit_v: null,
             showRead: false,
             showAdd: false,
             showEdit: false,
@@ -280,6 +281,7 @@ export default {
                 .then((r) => {
                     console.log(r.data)
                     this.getVacancies();
+                    this.file = null
                 })
                 .catch((err) => {
                     console.error(err)
@@ -289,22 +291,37 @@ export default {
             this.showRead = !this.showRead
             this.showEdit = false
             this.current = v;
+            this.file = null
         },
-        toggleEdit(v) {
+        toggleEdit(vac) {
             this.showEdit = !this.showEdit
             this.showRead = false
-            this.current = v;
+
+            this.current = vac
+            this.edit_v = {
+                'title': vac.title,
+                'company': vac.company,
+                'time': vac.time,
+                'salary': vac.salary,
+                'location': vac.location,
+                'contacts': vac.contacts,
+                'description': vac.description,
+                'image_path': vac.image_path,
+            }
+            this.file = null
         },
         toggleAdd() {
             this.showEdit = false
             this.showRead = false
             this.showAdd = !this.showAdd
+            this.file = null
         },
         toggleDelete(n) {
             this.showDelete = !this.showDelete
             this.showRead = false
             this.showEdit = false
             this.current = n;
+            this.file = null
         },
         getVacancies() {
             axios.get('api/vacancies')
@@ -317,7 +334,38 @@ export default {
                 .catch((err) => {
                     console.error(err)
                 })
-        }
+        },
+        deleteVacancy() { },
+        editVacancy() {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            let data = new FormData();
+            data.append('title', this.edit_v.title);
+            data.append('company', this.edit_v.company);
+            data.append('time', this.edit_v.time);
+            data.append('salary', this.edit_v.salary);
+            data.append('location', this.edit_v.location);
+            data.append('contacts', this.edit_v.contacts);
+            data.append('description', this.edit_v.description);
+            if (this.file) {
+                data.append('file', this.file);
+            } else {
+                data.append('image_path', this.edit_v.image_path);
+            }
+            axios.post('/api/vacancies/update/' + this.current.id, data, config)
+                .then((res) => {
+                    console.log(res)
+                    this.getVacancies()
+                    this.file = null
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+        },
     }
 }
 </script>

@@ -13,6 +13,7 @@ Route::get('/vacancies', [VacancyController::class, 'index']);
 Route::get('/vacancies/newest', [VacancyController::class, 'getThree']);
 Route::get('/vacancies/{id}', [VacancyController::class, 'getSingle']);
 Route::post('/vacancies/add', [VacancyController::class, 'store']);
+Route::post('/vacancies/update/{id}', [VacancyController::class, 'update']);
 
 
 
