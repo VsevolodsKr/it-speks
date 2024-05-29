@@ -5,12 +5,14 @@
         <div class="flex flex-col justify-between items-start max-w-xl">
             <div>
                 <h1 class="font-bold text-5xl mb-8">{{ data.title }}</h1>
-                <p class="leading-loose my-5">{{ data.desc }}</p>
+                <p class="leading-loose my-5">{{ data.short_desc }}</p>
             </div>
             <CustomButton :title="'Lasīt vairāk'"
                 @click="this.$router.push('/' + route + '/' + data.id); scrollToTop();" />
         </div>
-        <img class="max-w-sm" src="../../images/main1.png" alt="">
+        <div class="img-cont rounded-xl">
+            <img class="w-full" :src="data.image_path" alt="">
+        </div>
     </div>
 </template>
 
@@ -21,6 +23,9 @@ export default {
     components: {
         CustomButton,
     },
+    mounted() {
+        this.data.image_path = new URL(this.data.image_path, import.meta.url);
+    },
     methods: {
         scrollToTop() {
             window.scrollTo(0, 0);
@@ -28,3 +33,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.img-cont {
+    width: 24rem;
+    max-height: 20rem;
+    overflow: hidden;
+}
+</style>

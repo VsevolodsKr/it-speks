@@ -106,27 +106,8 @@ import axios from 'axios';
 export default {
     data: () => {
         return {
-            threeVac: [
-
-            ],
-
-            threeAkt: [
-                {
-                    id: 0,
-                    title: 'Pirmā aktualitate',
-                    desc: 'apraksts1',
-                },
-                {
-                    id: 1,
-                    title: 'Otrā aktualitate',
-                    desc: 'apraksts2',
-                },
-                {
-                    id: 2,
-                    title: 'Trešā aktualitate',
-                    desc: 'apraksts3',
-                },
-            ],
+            threeVac: [],
+            threeAkt: [],
         }
     },
     components: {
@@ -138,6 +119,14 @@ export default {
         axios.get('api/vacancies/newest')
             .then((r) => {
                 this.threeVac = r.data;
+            })
+            .catch((e) => {
+                console.error(e);
+            })
+
+        axios.get('api/news/newest')
+            .then((r) => {
+                this.threeAkt = r.data;
             })
             .catch((e) => {
                 console.error(e);
