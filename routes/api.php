@@ -10,6 +10,7 @@ Route::get('/user', function (Request $request) {
 
 // vacancies
 Route::get('/vacancies', [VacancyController::class, 'index']);
+Route::get('/vacancies/newest', [VacancyController::class, 'getThree']);
 Route::post('/vacancies/add', [VacancyController::class, 'store']);
 Route::get('/vacancies/image/{id}', [VacancyController::class, 'getImage']);
 

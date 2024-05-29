@@ -307,12 +307,16 @@ export default {
             this.current = n;
         },
         getVacancies() {
-            axios.get('api/vacancies').then((response) => {
-                this.vacancies = response.data
-                this.vacancies.forEach((v) => {
-                    v.image_path = new URL(v.image_path, import.meta.url)
+            axios.get('api/vacancies')
+                .then((response) => {
+                    this.vacancies = response.data
+                    this.vacancies.forEach((v) => {
+                        v.image_path = new URL(v.image_path, import.meta.url)
+                    })
                 })
-            })
+                .catch((err) => {
+                    console.error(err)
+                })
         }
     }
 }

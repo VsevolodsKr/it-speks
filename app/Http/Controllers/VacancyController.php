@@ -13,7 +13,11 @@ class VacancyController extends Controller
         // return Vacancy::where('id', $id)->get();
         return Vacancy::all();
     }
-
+    public function getThree()
+    {
+        //return newest three 
+        return Vacancy::orderBy('created_at', 'desc')->take(3)->get();
+    }
     public function store(Request $request)
     {
         $request->validate([

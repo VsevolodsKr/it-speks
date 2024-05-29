@@ -101,26 +101,13 @@ const isDark = useDark();
 import Wrapper from '../components/Wrapper.vue';
 import CustomButton from '../components/CustomButton.vue';
 import Block from '../components/Block.vue';
+import axios from 'axios';
 
 export default {
     data: () => {
         return {
             threeVac: [
-                {
-                    id: 0,
-                    title: 'Pirmā vakance',
-                    desc: 'apraksts1',
-                },
-                {
-                    id: 1,
-                    title: 'Otrā vakance',
-                    desc: 'apraksts2',
-                },
-                {
-                    id: 2,
-                    title: 'Trešā vakance',
-                    desc: 'apraksts3',
-                },
+
             ],
 
             threeAkt: [
@@ -146,6 +133,15 @@ export default {
         Wrapper,
         CustomButton,
         Block,
+    },
+    mounted() {
+        axios.get('api/vacancies/newest')
+            .then((r) => {
+                this.threeVac = r.data;
+            })
+            .catch((e) => {
+                console.error(e);
+            })
     },
     methods: {
         scrollToTop() {

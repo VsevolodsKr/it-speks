@@ -1,6 +1,6 @@
 <template>
     <nav
-        class="font-extralight flex justify-between px-16 py-5 dark:bg-slate-700 bg-white items-center fixed top-0 left-0 right-0 shadow-2xl">
+        class="font-extralight flex justify-between px-16 py-5 dark:bg-slate-700 bg-white items-center fixed top-0 left-0 right-0 shadow-2xl z-30">
         <div>
             <router-link v-if="!isDark" to="/"><img class="h-12 min-w-fit" src="../../images/LOGO.png"
                     alt="it speks logo"></router-link>
