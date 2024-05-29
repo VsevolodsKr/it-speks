@@ -81,4 +81,10 @@ class VacancyController extends Controller
 
         return response()->json(['message' => 'Updated successfully!', 'data' => $vac]);
     }
+
+    public function delete(string $id)
+    {
+        $vac = Vacancy::find($id);
+        $vac->delete();
+    }
 }
