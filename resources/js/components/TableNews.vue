@@ -2,6 +2,7 @@
     <div class="flex flex-col items-center gap-8 text-black dark:text-gray-50 ">
         <h3 class="text-center font-bold">Kopā ir {{ news.length }} aktualitātes</h3>
         <CustomButton :title="'Pievienot aktualitāti'" @click="toggleAdd" />
+        <CustomButton :title="'Atjaunot'" @click="getNews()" />
     </div>
     <div class="flex justify-center text-black dark:text-gray-50 ">
         <div class="overflow-x-scroll scroll-pl-6 p-5">

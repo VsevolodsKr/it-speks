@@ -52,7 +52,8 @@ export default {
         async getVacancies() {
             await axios.get('/api/vacancies/' + this.$route.params.id)
                 .then((response) => {
-                    this.current = response.data[0];
+                    this.current = response.data;
+
                     this.current.image_path = new URL(this.current.image_path, import.meta.url)
                     console.log(response)
                 })

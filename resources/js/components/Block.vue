@@ -1,11 +1,11 @@
 <template>
     <div
-        class="ring-1 ring-gray-200 rounded-xl py-5 px-8 flex flex-col justify-between items-center gap-5 text-black dark:text-gray-50 dark:bg-slate-700 shadow-xl">
+        class="ring-1 ring-gray-200 rounded-xl py-5 px-8 flex flex-col justify-between items-center gap-5 text-black dark:text-gray-50 dark:bg-slate-700 shadow-xl max-w-md">
         <h1 class="text-2xl font-bold underline">{{ data.title }}</h1>
         <div class="w-96 h-48 overflow-hidden rounded-md relative">
             <img :src="data.image_path" class="-translate-y-1/2 absolute top-1/2">
         </div>
-        <p class="italic text-gray-600 dark:text-gray-400">{{ data.description }}</p>
+        <p class="italic text-gray-600 dark:text-gray-400">{{ truncateDescription(data.description) }}</p>
         <CustomButton :title="btnTitle" @click="this.$router.push('/' + route + '/' + data.id); scrollToTop();" />
     </div>
 </template>
@@ -24,6 +24,10 @@ export default {
     methods: {
         scrollToTop() {
             window.scrollTo(0, 0);
+        },
+        truncateDescription(description) {
+            const limit = 100;
+            return description.length > limit ? description.substring(0, limit) + '...' : description;
         }
     }
 }
