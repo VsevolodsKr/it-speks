@@ -371,6 +371,7 @@ export default {
                     console.log(res)
                     this.getVacancies()
                     this.file = null
+                    this.toggleEdit(null)
                 })
                 .catch((err) => {
                     console.error(err)

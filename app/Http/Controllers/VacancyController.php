@@ -10,7 +10,7 @@ class VacancyController extends Controller
     //
     public function index()
     {
-        return Vacancy::all();
+        return Vacancy::orderBy('created_at', 'desc')->get();
     }
     public function getThree()
     {
