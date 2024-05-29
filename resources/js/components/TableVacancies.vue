@@ -2,7 +2,9 @@
     <div class="flex flex-col items-center gap-8 text-black dark:text-gray-50 ">
         <h3 class="text-center font-bold">Kopā ir {{ vacancies.length }} vakances</h3>
         <CustomButton :title="'Pievienot vakanci'" @click="toggleAdd" />
+        <CustomButton :title="'Atjaunot'" @click="getVacancies()" />
     </div>
+    <!-- <img src="../../../storage/app/public/uploads/1717001027_download.jpg"> -->
     <div class="flex justify-center text-black dark:text-gray-50 ">
         <div class="overflow-x-scroll scroll-pl-6 p-5">
             <table class="ring-1 ring-gray-300 rounded-md  w-max ">
@@ -18,7 +20,7 @@
                 </tr>
                 <tr v-for="v, index in vacancies" :key="index"
                     :class="[(index == vacancies.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed ', 'h-10']">
-                    <td class="p-9 text-center border-r-2 border-gray-300 border-dashed "><img :src="v.image"
+                    <td class="p-9 text-center border-r-2 border-gray-300 border-dashed "><img :src="v.image_path"
                             class="max-w-64 rounded-md"></td>
                     <td class="px-16 text-center border-r-2 border-gray-300 border-dashed ">{{ v.title }}</td>
                     <td class="px-16 text-center border-r-2 border-gray-300 border-dashed">{{ v.company }}</td>
@@ -55,7 +57,7 @@
             <button @click="toggleRead" class="text-3xl transition-colors hover:text-emerald-600"><i
                     class="fa-regular fa-circle-xmark"></i></button>
         </div>
-        <p>{{ current.info }}</p>
+        <p>{{ current.description }}</p>
     </div>
 
     <!-- hidden DELETE menu -->
@@ -90,13 +92,7 @@
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
                 </td>
             </tr>
-            <tr>
-                <td class="font-bold">Bilde</td>
-                <td class="p-4">
-                    <input type="text" v-model="current.image"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
-                </td>
-            </tr>
+
             <tr>
                 <td class="font-bold">Uzņēmums</td>
                 <td class="p-4">
@@ -135,9 +131,15 @@
             <tr>
                 <td class="font-bold">Apraksts</td>
                 <td class="p-4">
-                    <textarea v-model="current.info"
+                    <textarea v-model="current.description"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
 
+                </td>
+            </tr>
+            <tr>
+                <td class="font-bold">Attēls</td>
+                <td class="p-4">
+                    <input type="file" required />
                 </td>
             </tr>
         </table>
@@ -154,68 +156,71 @@
                 <i class="fa-regular fa-circle-xmark"></i>
             </button>
         </div>
+        <form enctype="multipart/form-data">
 
-        <table>
-            <tr>
-                <td class="font-bold">Nosaukums</td>
-                <td class="p-4">
-                    <input type="text" v-model="new_v.title"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Bilde</td>
-                <td class="p-4">
-                    <input type="text" v-model="new_v.image"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Uzņēmums</td>
-                <td class="p-4">
-                    <input type="text" v-model="new_v.company"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Slodze</td>
-                <td class="p-4">
-                    <input type="text" v-model="new_v.time"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Atalgojums</td>
-                <td class="p-4">
-                    <input type="text" v-model="new_v.salary"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Vieta</td>
-                <td class="p-4">
-                    <input type="text" v-model="new_v.location"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Kontakti</td>
-                <td class="p-4">
-                    <input type="text" v-model="new_v.contacts"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Apraksts</td>
-                <td class="p-4">
-                    <textarea v-model="new_v.info"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
 
-                </td>
-            </tr>
-        </table>
-        <CustomButton :title="'Saglabāt'" />
+            <table>
+                <tr>
+                    <td class="font-bold">Nosaukums</td>
+                    <td class="p-4">
+                        <input required type="text" v-model="new_v.title"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Uzņēmums</td>
+                    <td class="p-4">
+                        <input required type="text" v-model="new_v.company"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Slodze</td>
+                    <td class="p-4">
+                        <input required type="text" v-model="new_v.time"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Atalgojums</td>
+                    <td class="p-4">
+                        <input required type="text" v-model="new_v.salary"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Vieta</td>
+                    <td class="p-4">
+                        <input required type="text" v-model="new_v.location"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Kontakti</td>
+                    <td class="p-4">
+                        <input required type="text" v-model="new_v.contacts"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Apraksts</td>
+                    <td class="p-4">
+                        <textarea required v-model="new_v.description"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Attēls</td>
+                    <td class="p-4">
+                        <input type="file" @change="handleFileChange" required />
+                    </td>
+                </tr>
+            </table>
+            <CustomButton :title="'Saglabāt'" :type="'submit'" @click="add" />
+        </form>
     </div>
+
 </template>
 <script>
 import CustomButton from './CustomButton.vue';
@@ -223,38 +228,7 @@ import TextField from './TextField.vue';
 export default {
     data: () => {
         return {
-            vacancies: [
-                {
-                    title: 'v1',
-                    company: 'uzn1',
-                    time: 'pilna',
-                    salary: '800',
-                    location: 'liepaja',
-                    contacts: '28536473',
-                    image: 'https://images.unsplash.com/photo-1573496546735-c274b1fd186b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
-                },
-                {
-                    title: 'v2',
-                    company: 'uzn2',
-                    time: 'pusslodze',
-                    salary: '1000',
-                    location: 'riga',
-                    contacts: '28346473',
-                    image: 'https://images.unsplash.com/photo-1573496546735-c274b1fd186b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
-                },
-                {
-                    title: 'v3',
-                    company: 'uzn3',
-                    time: 'noteiktais laiks',
-                    salary: '300',
-                    location: 'ventspils',
-                    contacts: '28565473',
-                    image: 'https://images.unsplash.com/photo-1573496546735-c274b1fd186b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus. Velit ut tortor pretium viverra suspendisse potenti.'
-                },
-            ],
+            vacancies: [],
             current: null,
             new_v: {
                 title: '',
@@ -263,21 +237,54 @@ export default {
                 salary: '',
                 location: '',
                 contacts: '',
-                info: '',
-                image: ''
-
+                description: '',
+                image_path: '',
             },
             showRead: false,
             showAdd: false,
             showEdit: false,
             showDelete: false,
+            file: null,
         }
     },
     components: {
         CustomButton,
         TextField,
     },
+    mounted() {
+        this.getVacancies();
+    },
     methods: {
+        handleFileChange(event) {
+            this.file = event.target.files[0];
+        },
+        add(e) {
+            e.preventDefault()
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            let data = new FormData();
+            data.append('title', this.new_v.title);
+            data.append('company', this.new_v.company);
+            data.append('time', this.new_v.time);
+            data.append('salary', this.new_v.salary);
+            data.append('location', this.new_v.location);
+            data.append('contacts', this.new_v.contacts);
+            data.append('description', this.new_v.description);
+            data.append('file', this.file);
+
+            axios.post('api/vacancies/add', data, config)
+                .then((r) => {
+                    console.log(r.data)
+                    this.getVacancies();
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+        },
         toggleRead(v) {
             this.showRead = !this.showRead
             this.showEdit = false
@@ -298,7 +305,15 @@ export default {
             this.showRead = false
             this.showEdit = false
             this.current = n;
+        },
+        getVacancies() {
+            axios.get('api/vacancies').then((response) => {
+                this.vacancies = response.data
+                this.vacancies.forEach((v) => {
+                    v.image_path = new URL(v.image_path, import.meta.url)
+                })
+            })
         }
     }
 }
-</script>
+</script>async async

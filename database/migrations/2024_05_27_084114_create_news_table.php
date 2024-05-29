@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('short_desc');
             $table->string('description');
             $table->binary('image_data');
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 

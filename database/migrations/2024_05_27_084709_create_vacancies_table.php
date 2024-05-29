@@ -19,8 +19,9 @@ return new class extends Migration {
             $table->string('location');
             $table->text('description');
             $table->text('contacts');
-            $table->binary('image_data');
-            // $table->timestamps();
+            $table->string('image_title');
+            $table->string('image_path');
+            $table->timestamps();
         });
     }
 
