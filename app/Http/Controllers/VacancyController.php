@@ -80,19 +80,9 @@ class VacancyController extends Controller
     }
 
 
-    public function getImage(string $id) // Assuming route like /images/{id}
+    public function getSingle(string $id)
     {
-        $vacancy = Vacancy::where('id', $id)->get();
-
-        // $imageBlob = $vacancy->image_data; // Access the BLOB column
-        return $vacancy;
-        // $filename = time() . '.' . $imageBlob->getClientOriginalExtension();
-        // $mimeType = $imageBlob->getClientMimeType();
-        // return response()->streamDownload(function () use ($imageBlob) {
-        //     echo $imageBlob;
-        // }, $vacancy->filename, [
-        //     'Content-Type' => $mimeType,
-        // ]);
+        return Vacancy::where('id', $id)->get();
     }
 
 

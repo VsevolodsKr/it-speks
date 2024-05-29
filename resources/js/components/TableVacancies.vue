@@ -320,4 +320,4 @@ export default {
         }
     }
 }
-</script>async async
+</script>

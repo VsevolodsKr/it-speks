@@ -14,7 +14,6 @@
 import CustomButton from './CustomButton.vue';
 export default {
     props: ['data', 'btnTitle', 'route'],
-    //'title', 'desc', 'imgsrc'
     components: {
         CustomButton,
     },

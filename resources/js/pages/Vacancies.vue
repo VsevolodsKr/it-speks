@@ -36,7 +36,7 @@
 
         <!-- vacancies -->
         <div class="grid grid-cols-3 gap-10 justify-center items-center a">
-            <Block v-for="vac in vacancies" :data="vac" :route="'vacancies'" :btnTitle="vac.btnTitle" />
+            <Block v-for="vac in vacancies" :data="vac" :route="'vacancies'" :btnTitle="'Pieteikties'" />
         </div>
 
 
@@ -66,24 +66,6 @@ export default {
             time: [],
             pay: [],
             vacancies: [
-                {
-                    id: 0,
-                    title: 'Pirmais',
-                    desc: 'pirmais apraksts',
-                    btnTitle: 'Pieteikties',
-                },
-                {
-                    id: 1,
-                    title: 'Otrais',
-                    desc: 'Otrais apraksts',
-                    btnTitle: 'Pieteikties',
-                },
-                {
-                    id: 2,
-                    title: 'Trešais',
-                    desc: 'Trešais apraksts',
-                    btnTitle: 'Pieteikties',
-                },
             ],
         }
     },
@@ -93,6 +75,24 @@ export default {
         Dropdown,
         Block,
         CustomButton,
+    },
+    mounted() {
+        this.getVacancies()
+    },
+    methods: {
+        async getVacancies() {
+            await axios.get('api/vacancies')
+                .then((response) => {
+                    this.vacancies = response.data;
+                    this.vacancies.forEach((v) => {
+                        v.image_path = new URL(v.image_path, import.meta.url);
+                    });
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        },
+
     }
 }
 </script>

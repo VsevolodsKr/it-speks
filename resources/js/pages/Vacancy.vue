@@ -1,6 +1,8 @@
 <template>
     <Wrapper>
-        <div class="flex justify-around gap-10 text-black dark:text-gray-50 max-[1024px]:flex-col max-[1024px]:md:flex-col max-[1024px]:items-center">
+        <div
+            class="flex justify-around gap-10 text-black dark:text-gray-50 max-[1024px]:flex-col max-[1024px]:md:flex-col max-[1024px]:items-center">
+
             <div v-if="current" class="w-1/2 max-[1024px]: w-full max-[1024px]: text-left">
                 <h1 class="font-bold text-4xl mb-10">{{ current.title }}</h1>
                 <h3 class="font-bold text-2xl">Uzņēmums:</h3>
@@ -14,8 +16,8 @@
                 <h3 class="font-bold text-2xl">Kontakti:</h3>
                 <p class="text-2xl mb-10">{{ current.contacts }}</p>
             </div>
-            <div>
-                <img src="../../images/main2.png">
+            <div v-if="current">
+                <img :src="current.image_path">
                 <h3 class="font-bold text-2xl text-center mt-10">Pieteikties vakancei<br>Front-end developer</h3>
                 <form class="flex flex-col items-center" method="post">
                     <TextField :type="'text'" :placeholder="'Vārds'" class="w-full" />
@@ -35,44 +37,31 @@ import Wrapper from "../components/Wrapper.vue"
 import CustomButton from "../components/CustomButton.vue"
 import TextField from "../components/TextField.vue"
 import TextArea from "../components/TextArea.vue"
+import axios from "axios";
 
 export default {
     data() {
         return {
-            vacancies: [
-                {
-                    id: 0,
-                    title: "A Front-end developer",
-                    company: "SIA \"Kompānija A\"",
-                    salary: "1000 EUR",
-                    city: "Liepāja",
-                    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam magnam perferendis harum ipsam, ducimus",
-                    contacts: "+371 212324567 zvanot vai rakstot Whatsapp",
-                }, {
-                    id: 1,
-                    title: "B Front-end developer",
-                    company: "SIA \"Kompānija A\"",
-                    salary: "1000 EUR",
-                    city: "Liepāja",
-                    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam magnam perferendis harum ipsam, ducimus",
-                    contacts: "+371 212324567 zvanot vai rakstot Whatsapp",
-                }, {
-                    id: 2,
-                    title: "C Front-end developer",
-                    company: "SIA \"Kompānija A\"",
-                    salary: "1000 EUR",
-                    city: "Liepāja",
-                    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam magnam perferendis harum ipsam, ducimus",
-                    contacts: "+371 212324567 zvanot vai rakstot Whatsapp",
-                },
-            ],
             current: null,
         }
     },
     mounted() {
-        const vacancy = this.vacancies.find(vacancy => vacancy.id === parseInt(this.$route.params.id));
-        this.current = vacancy;
+        this.getVacancies()
     },
+    methods: {
+        async getVacancies() {
+            await axios.get('/api/vacancies/' + this.$route.params.id)
+                .then((response) => {
+                    this.current = response.data[0];
+                    this.current.image_path = new URL(this.current.image_path, import.meta.url)
+                    console.log(response)
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        },
+    },
+
     components: {
         Wrapper,
         CustomButton,
