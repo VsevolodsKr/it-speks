@@ -40,7 +40,7 @@
 
     <!-- hidden READ menu -->
     <div v-if="showRead"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96  text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96  text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between">
             <h1 class="font-bold text-xl">{{ name }} {{ surname }}</h1>
             <button @click="toggleRead" class="text-3xl transition-colors hover:text-emerald-600"><i
@@ -52,7 +52,7 @@
 
     <!-- hidden EDIT menu -->
     <div v-if="showEdit"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between w-full">
             <h1 class="font-bold text-xl">{{ name }} {{ surname }}</h1>
             <button @click="toggleEdit" class="text-3xl transition-colors hover:text-emerald-600">

@@ -41,7 +41,7 @@
     </div>
     <!-- hidden DELETE menu -->
     <div v-if="showDelete"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between">
             <h1 class="font-bold text-xl">Nodzēst {{ current.title }}</h1>
             <button @click="toggleDelete" class="text-3xl transition-colors hover:text-emerald-600"><i
@@ -57,7 +57,7 @@
 
     <!-- hidden READ menu -->
     <div v-if="showRead"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between">
             <h1 class="font-bold text-xl">{{ current.title }}</h1>
             <button @click="toggleRead" class="text-3xl transition-colors hover:text-emerald-600"><i
@@ -70,7 +70,7 @@
 
     <!-- hidden EDIT menu -->
     <div v-if="showEdit"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between w-full">
             <h1 class="font-bold text-xl">Rediģēt "{{ current.title }}"</h1>
             <button @click="toggleEdit" class="text-3xl transition-colors hover:text-emerald-600">
@@ -83,21 +83,21 @@
                 <td class="font-bold">Nosaukums</td>
                 <td class="p-4">
                     <input type="text" v-model="edit_n.title"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Īss apraksts</td>
                 <td class="p-4">
                     <textarea v-model="edit_n.short_desc"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Apraksts</td>
                 <td class="p-4">
                     <textarea v-model="edit_n.description"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
                 </td>
             </tr>
             <tr>
@@ -113,7 +113,7 @@
 
     <!-- hidden ADD menu -->
     <div v-if="showAdd"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between w-full">
             <h1 class="font-bold text-xl">Pievienot aktualitāti</h1>
             <button @click="toggleAdd" class="text-3xl transition-colors hover:text-emerald-600">
@@ -126,7 +126,7 @@
                 <td class="font-bold">Nosaukums</td>
                 <td class="p-4">
                     <input type="text" v-model="new_n.title"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
 
@@ -134,14 +134,14 @@
                 <td class="font-bold">Īss apraksts</td>
                 <td class="p-4">
                     <textarea v-model="new_n.short_desc"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Apraksts</td>
                 <td class="p-4">
                     <textarea v-model="new_n.description"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
                 </td>
             </tr>
             <tr>

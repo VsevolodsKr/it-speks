@@ -1,11 +1,13 @@
 <template>
     <div
-        class="ring-1 ring-gray-200 rounded-xl py-5 px-8 flex flex-col justify-between items-center gap-5 text-black dark:text-gray-50 dark:bg-slate-700 shadow-xl max-w-md">
+        class="ring-1 ring-gray-200 rounded-xl py-5 px-8 flex flex-col justify-between items-center gap-5 text-black dark:text-gray-50 dark:bg-zinc-700 shadow-2xl max-w-md hover:ring-2 transition-all">
         <h1 class="text-2xl font-bold underline">{{ data.title }}</h1>
-        <div class="w-96 h-48 overflow-hidden rounded-md relative">
+        <div class="w-96 h-48 overflow-hidden rounded-md relative shadow-2xl ">
             <img :src="data.image_path" class="-translate-y-1/2 absolute top-1/2">
         </div>
-        <p class="italic text-gray-600 dark:text-gray-400">{{ truncateDescription(data.description) }}</p>
+        <p class="italic text-gray-600 dark:text-gray-400 w-full break-words">{{ truncateDescription(data.description)
+            }}
+        </p>
         <CustomButton :title="btnTitle" @click="this.$router.push('/' + route + '/' + data.id); scrollToTop();" />
     </div>
 </template>

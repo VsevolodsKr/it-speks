@@ -51,18 +51,18 @@
 
     <!-- hidden READ menu -->
     <div v-if="showRead"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between">
             <h1 class="font-bold text-xl">{{ current.title }}</h1>
             <button @click="toggleRead" class="text-3xl transition-colors hover:text-emerald-600"><i
                     class="fa-regular fa-circle-xmark"></i></button>
         </div>
-        <p>{{ current.description }}</p>
+        <p class="break-words">{{ current.description }}</p>
     </div>
 
     <!-- hidden DELETE menu -->
     <div v-if="showDelete"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between">
             <h1 class="font-bold text-xl">Nodzēst {{ current.title }}</h1>
             <button @click="toggleDelete()" class="text-3xl transition-colors hover:text-emerald-600"><i
@@ -76,7 +76,7 @@
     </div>
     <!-- hidden EDIT menu -->
     <div v-if="showEdit"
-        class="text-black dark:text-gray-50 dark:bg-slate-700 ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen">
+        class="text-black dark:text-gray-50 dark:bg-zinc-700 ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen">
         <div class="flex justify-between w-full">
             <h1 class="font-bold text-xl">Rediģēt "{{ current.title }}"</h1>
             <button @click="toggleEdit" class="text-3xl transition-colors hover:text-emerald-600">
@@ -89,7 +89,7 @@
                 <td class="font-bold">Nosaukums</td>
                 <td class="p-4">
                     <input type="text" v-model="edit_v.title"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
 
@@ -97,49 +97,49 @@
                 <td class="font-bold">Uzņēmums</td>
                 <td class="p-4">
                     <input type="text" v-model="edit_v.company"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Slodze</td>
                 <td class="p-4">
                     <input type="text" v-model="edit_v.time"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Atalgojums</td>
                 <td class="p-4">
                     <input type="text" v-model="edit_v.salary"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Vieta</td>
                 <td class="p-4">
                     <input type="text" v-model="edit_v.location"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Kontakti</td>
                 <td class="p-4">
                     <input type="text" v-model="edit_v.contacts"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Apraksts</td>
                 <td class="p-4">
                     <textarea v-model="edit_v.description"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
 
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Attēls</td>
                 <td class="p-4">
-                    <input type="file" @change="handleFileChange" />
+                    <input type="file" accept="image/*" @change="handleFileChange" />
                 </td>
             </tr>
         </table>
@@ -149,7 +149,7 @@
 
     <!-- hidden ADD menu -->
     <div v-if="showAdd"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-slate-700">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-zinc-700">
         <div class="flex justify-between w-full">
             <h1 class="font-bold text-xl">Pievienot vakanci</h1>
             <button @click="toggleAdd" class="text-3xl transition-colors hover:text-emerald-600">
@@ -164,49 +164,49 @@
                     <td class="font-bold">Nosaukums</td>
                     <td class="p-4">
                         <input required type="text" v-model="new_v.title"
-                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                     </td>
                 </tr>
                 <tr>
                     <td class="font-bold">Uzņēmums</td>
                     <td class="p-4">
                         <input required type="text" v-model="new_v.company"
-                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                     </td>
                 </tr>
                 <tr>
                     <td class="font-bold">Slodze</td>
                     <td class="p-4">
                         <input required type="text" v-model="new_v.time"
-                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                     </td>
                 </tr>
                 <tr>
                     <td class="font-bold">Atalgojums</td>
                     <td class="p-4">
                         <input required type="text" v-model="new_v.salary"
-                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                     </td>
                 </tr>
                 <tr>
                     <td class="font-bold">Vieta</td>
                     <td class="p-4">
                         <input required type="text" v-model="new_v.location"
-                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                     </td>
                 </tr>
                 <tr>
                     <td class="font-bold">Kontakti</td>
                     <td class="p-4">
                         <input required type="text" v-model="new_v.contacts"
-                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700">
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                     </td>
                 </tr>
                 <tr>
                     <td class="font-bold">Apraksts</td>
                     <td class="p-4">
                         <textarea required v-model="new_v.description"
-                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-slate-700"></textarea>
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
 
                     </td>
                 </tr>

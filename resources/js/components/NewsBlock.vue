@@ -1,6 +1,6 @@
 <template>
     <div
-        class="ring-1 ring-gray-300 p-8 py-10 rounded-xl flex gap-36 flex-wrap justify-center w-fit text-black dark:text-gray-50 bg-white dark:bg-slate-700">
+        class="ring-1 ring-gray-300 p-8 py-10 rounded-xl flex gap-36 flex-wrap justify-center w-fit text-black dark:text-gray-50 bg-white dark:bg-zinc-700">
         <!-- col 1 -->
         <div class="flex flex-col justify-between items-start max-w-xl">
             <div>

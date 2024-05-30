@@ -1,20 +1,21 @@
 <template>
     <Wrapper>
         <div
-            class="flex justify-around gap-10 text-black dark:text-gray-50 max-[1024px]:flex-col max-[1024px]:md:flex-col max-[1024px]:items-center">
+            class="flex justify-around gap-10 text-black dark:text-gray-50 max-[1024px]:flex-col max-[1024px]:md:flex-col max-[1024px]:items-center flex-wrap">
 
-            <div v-if="current" class="w-1/2 max-[1024px]: w-full max-[1024px]: text-left">
-                <h1 class="font-bold text-4xl mb-10">{{ current.title }}</h1>
-                <h3 class="font-bold text-2xl">Uzņēmums:</h3>
-                <p class="text-2xl mb-10">{{ current.company }}</p>
-                <h3 class="font-bold text-2xl">Atalgojums:</h3>
-                <p class="text-2xl mb-10">{{ current.salary }}</p>
-                <h3 class="font-bold text-2xl">Pilsēta:</h3>
-                <p class="text-2xl mb-10">{{ current.location }}</p>
-                <h3 class="font-bold text-2xl">Apraksts:</h3>
-                <p class="text-2xl mb-10">{{ current.description }}</p>
-                <h3 class="font-bold text-2xl">Kontakti:</h3>
-                <p class="text-2xl mb-10">{{ current.contacts }}</p>
+            <div v-if="current"
+                class="break-words max-[1024px]:  w-max-3xl max-[1024px]: text-left flex flex-col gap-5">
+                <h1 class="font-bold text-4xl ">{{ current.title }}</h1>
+                <h3 class="font-bold text-xl">Uzņēmums:</h3>
+                <p class="text-xl">{{ current.company }}</p>
+                <h3 class="font-bold text-xl">Atalgojums:</h3>
+                <p class="text-xl ">{{ current.salary }}</p>
+                <h3 class="font-bold text-xl">Pilsēta:</h3>
+                <p class="text-xl ">{{ current.location }}</p>
+                <h3 class="font-bold text-xl">Apraksts:</h3>
+                <p class="text-xl break-words max-w-xl">{{ current.description }}</p>
+                <h3 class="font-bold text-xl">Kontakti:</h3>
+                <p class="text-xl ">{{ current.contacts }}</p>
             </div>
             <div v-if="current">
                 <img :src="current.image_path">
