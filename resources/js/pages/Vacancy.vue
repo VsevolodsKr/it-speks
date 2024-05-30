@@ -18,7 +18,9 @@
                 <p class="text-xl ">{{ current.contacts }}</p>
             </div>
             <div v-if="current">
-                <img :src="current.image_path">
+                <div style="width: 700px;" class="h-96 overflow-hidden relative">
+                    <img :src="current.image_path" class="absolute top-1/2 -translate-y-1/2">
+                </div>
                 <h3 class="font-bold text-2xl text-center mt-10">Pieteikties vakancei<br>Front-end developer</h3>
                 <form class="flex flex-col items-center" method="post">
                     <TextField :type="'text'" :placeholder="'Vārds'" class="w-full" />

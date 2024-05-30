@@ -1,6 +1,9 @@
 <template>
     <Wrapper>
         <h1 class="text-3xl font-bold text-center dark:text-gray-50 text-black">Vakances</h1>
+        <div class="flex flex-wrap justify-center">
+            <CustomButton :title="'Notirīt'" @click="clear" />
+        </div>
 
         <!-- row 1 -->
         <div>
@@ -25,41 +28,44 @@
                 <div
                     class="items-center gap-5 min-[920px]:grid grid-flow-col justify-stretch flex-wrap max-[920px]:flex">
                     <!-- amats -->
-                    <select
+                    <select v-model="filterProf"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                        <option value="" class=" hidden" disabled selected>Amats</option>
+                        <option value="-1" class=" hidden" selected>Amats</option>
                         <option v-for="el, index in prof" :key="index" :value="index">{{ el.title }}</option>
                     </select>
                     <!-- pilseta -->
-                    <select
+                    <select v-model="filterCities"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                        <option value="" class=" hidden" disabled selected>Vieta</option>
+                        <option value="-1" class=" hidden" selected>Vieta</option>
                         <option v-for="el, index in cities" :key="index" :value="index">{{ el.title }}</option>
                     </select>
                     <!-- slodze -->
-                    <select
+                    <select v-model="filterTime"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                        <option value="" class=" hidden" disabled selected>Slodze</option>
+                        <option value="-1" class=" hidden" selected>Slodze</option>
                         <option v-for="el, index in time" :key="index" :value="index">{{ el.title }}</option>
                     </select>
                     <!-- atalgojums -->
-                    <select
+                    <select v-model="filterPay"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                        <option value="" class=" hidden" disabled selected>Atalgojums</option>
+                        <option value="-1" class=" hidden" selected>Atalgojums</option>
                         <option v-for="el, index in pay" :key="index" :value="index">{{ el.title }}</option>
                     </select>
                 </div>
-                <div class="flex gap-5 flex-wrap">
-                    <CustomButton :title="'Notirīt'" />
-                    <CustomButton :title="'Filtrēt'" />
+                <div>
+                    <CustomButton :title="'Filtrēt'" @click="filter" />
+
                 </div>
             </form>
         </div>
 
 
         <!-- vacancies -->
-        <div class="grid grid-cols-3 gap-10 justify-center items-center a">
-            <Block v-for="vac in vacancies" :data="vac" :route="'vacancies'" :btnTitle="'Pieteikties'" />
+        <div class="">
+            <div class="vaca w-full">
+                <Block v-for="vac in vacancies" :data="vac" :route="'vacancies'" :btnTitle="'Pieteikties'" />
+            </div>
+
         </div>
 
 
@@ -88,6 +94,10 @@ export default {
             ],
             search: '',
             searchlocation: -1,
+            filterProf: -1,
+            filterCities: -1,
+            filterTime: -1,
+            filterPay: -1,
         }
     },
     components: {
@@ -141,22 +151,56 @@ export default {
 
 
         },
-        filter() {
-            this.vacancies = this.vacancies.filter((vac) => {
+        filter(e) {
+            //display vacancies by using filters 'prof', 'cities', 'pay', 'time'
+            e.preventDefault()
+            this.vacancies = this.allvacancies
+            if (this.filterProf != -1) {
+                let prof = this.prof[this.filterProf].title
+                this.vacancies = this.vacancies.filter((vac) => {
+                    return vac.title.toLowerCase().includes(prof.toLowerCase());
+                });
+            }
+            if (this.filterCities != -1) {
+                let city = this.cities[this.filterCities].title
+                this.vacancies = this.vacancies.filter((vac) => {
+                    return vac.location.toLowerCase().includes(city.toLowerCase());
+                });
+            }
+            if (this.filterPay != -1) {
+                let pay = this.pay[this.filterPay].title
+                this.vacancies = this.vacancies.filter((vac) => {
+                    return vac.salary.toLowerCase().includes(pay.toLowerCase());
+                });
+            }
+            if (this.filterTime != -1) {
+                let time = this.time[this.filterTime].title
+                this.vacancies = this.vacancies.filter((vac) => {
+                    return vac.time.toLowerCase().includes(time.toLowerCase());
+                });
+            }
 
-            })
         },
-
+        clear(e) {
+            e.preventDefault()
+            this.search = ''
+            this.searchlocation = -1
+            this.filterProf = -1
+            this.filterCities = -1
+            this.filterPay = -1
+            this.filterTime = -1
+            this.vacancies = this.allvacancies
+        }
     }
 }
 </script>
 
 
 <style scoped>
-@media(max-width:1515px) {
-    .a {
-        display: flex;
-        flex-wrap: wrap;
-    }
+.vaca {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+    justify-content: center;
+    align-items: center;
 }
 </style>
