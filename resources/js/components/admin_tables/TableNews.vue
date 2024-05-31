@@ -155,7 +155,7 @@
     </div>
 </template>
 <script>
-import CustomButton from './CustomButton.vue';
+import CustomButton from '../CustomButton.vue';
 export default {
     data: () => {
         return {

@@ -223,8 +223,8 @@
 
 </template>
 <script>
-import CustomButton from './CustomButton.vue';
-import TextField from './TextField.vue';
+import CustomButton from '../CustomButton.vue';
+
 export default {
     data: () => {
         return {
@@ -250,7 +250,6 @@ export default {
     },
     components: {
         CustomButton,
-        TextField,
     },
     mounted() {
         this.getVacancies();

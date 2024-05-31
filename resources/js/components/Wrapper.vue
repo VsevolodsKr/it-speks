@@ -12,9 +12,9 @@
 
 
 <script>
-import Navigation from './Navigation.vue';
-import Workspace from './Workspace.vue';
-import Footer from './Footer.vue';
+import Navigation from './base/Navigation.vue';
+import Workspace from './base/Workspace.vue';
+import Footer from './base/Footer.vue';
 export default {
     components: {
         Navigation,

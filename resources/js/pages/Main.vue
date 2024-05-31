@@ -48,7 +48,7 @@
 
         <!-- row 3 -->
         <div
-            class="flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row ">
+            class="flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row dark:text-gray-50">
             <!-- lcol -->
             <div class="flex flex-col items-start font-bold tracking-wide">
                 <img class="min-[640px]:max-w-7xl" src="../../images/main2.png">

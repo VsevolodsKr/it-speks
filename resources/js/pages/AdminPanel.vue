@@ -43,10 +43,10 @@
 </template>
 <script>
 import Wrapper from '../components/Wrapper.vue';
-import TableApplications from '../components/TableApplications.vue';
-import TableVacancies from '../components/TableVacancies.vue';
-import TableNews from '../components/TableNews.vue';
-import TableUsers from '../components/TableUsers.vue';
+import TableApplications from '../components/admin_tables/TableApplications.vue';
+import TableVacancies from '../components/admin_tables/TableVacancies.vue';
+import TableNews from '../components/admin_tables/TableNews.vue';
+import TableUsers from '../components/admin_tables/TableUsers.vue';
 export default {
     data: () => {
         return {
@@ -61,6 +61,7 @@ export default {
         }
     },
     components: {
+
         Wrapper,
         TableApplications,
         TableVacancies,

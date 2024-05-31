@@ -1,8 +1,7 @@
 <template>
-    <footer
-        class="flex justify-center gap-28 md:items-center mt-16 text-gray-500 max-md:flex-col max-md:items-start pl-16">
+    <footer class="flex justify-center gap-28  mt-16 text-gray-500 pl-16 flex-wrap">
         <!-- contacts -->
-        <div>
+        <div class="max-[658px]:w-96">
             <h1 class="text-3xl tracking-widest font-bold mb-3">Kontakti</h1>
             <div class="flex flex-col gap-4">
                 <div class="flex gap-2">
@@ -26,7 +25,7 @@
 
 
         <!-- navigation -->
-        <div>
+        <div class="max-[658px]:w-96">
             <div>
                 <h1 class="text-3xl tracking-widest font-bold mb-3">Sadaļas</h1>
                 <div class="flex flex-col gap-4">
@@ -61,9 +60,9 @@
 
 
         <!-- logo -->
-        <div>
-            <img v-if="!isDark" class="mt-16" src="../../images/LOGO.png">
-            <img v-else class="mt-16" src="../../images/LOGO-dark.png">
+        <div class="max-[658px]:w-96">
+            <img v-if="!isDark" class="mt-16" src="../../../images/LOGO.png">
+            <img v-else class="mt-16" src="../../../images/LOGO-dark.png">
             <p class="text-center tracking-widest mt-16">IT Spēks &copy; 2024</p>
         </div>
     </footer>

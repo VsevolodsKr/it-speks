@@ -174,7 +174,7 @@ const isDark = useDark();
 
 </script>
 <script>
-import CustomButton from './CustomButton.vue';
+import CustomButton from '../CustomButton.vue';
 export default {
     props: ['role', 'user'],
     data: () => {

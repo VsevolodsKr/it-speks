@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Login from "../pages/Login.vue";
 import Main from "../pages/Main.vue";
 import About from "../pages/About.vue";
-import New from "../pages/New.vue";
-import Vacancy from "../pages/Vacancy.vue";
+import New from "../pages/separate-view/New.vue";
+import Vacancy from "../pages/separate-view/Vacancy.vue";
 
 import Vacancies from "../pages/Vacancies.vue";
 import News from "../pages/News.vue";

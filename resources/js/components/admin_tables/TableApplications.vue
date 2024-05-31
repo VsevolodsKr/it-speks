@@ -81,7 +81,10 @@
                 <td class="font-bold">Statuss</td>
                 <td>
                     <form action="">
-                        <Dropdown :elements="statenames" />
+                        <select v-model="state"
+                            class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
+                            <option v-for="el, index in statenames" :key="index" :value="index">{{ el.title }}</option>
+                        </select>
                     </form>
                 </td>
             </tr>
@@ -91,8 +94,7 @@
 </template>
 <script>
 
-import Dropdown from './Dropdown.vue';
-import CustomButton from './CustomButton.vue';
+import CustomButton from '../CustomButton.vue';
 export default {
     data: () => {
         return {
@@ -144,10 +146,7 @@ export default {
         }
     },
     components: {
-
-        Dropdown,
         CustomButton,
-
     },
     methods: {
         toggleRead(a) {

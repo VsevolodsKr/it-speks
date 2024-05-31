@@ -5,64 +5,67 @@
             <CustomButton :title="'Notirīt'" @click="clear" />
         </div>
 
-        <!-- row 1 -->
-        <div>
-            <h2 class="text-xl tracking-wider underline dark:text-gray-50 text-black grid">Meklēšana</h2>
-            <form class="items-center gap-5 min-[840px]:grid grid-flow-col justify-stretch flex-wrap max-[840px]:flex">
-                <input type="text" placeholder="Vēlamā vakance" v-model="search"
-                    class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50">
-                <!-- <Dropdown :elements="cities" :title="'Vieta'" /> -->
-                <select v-model="searchlocation"
-                    class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                    <option value="-1" selected>Vieta</option>
-                    <option v-for="el, index in cities" :key="index" :value="index">{{ el.title }}</option>
-                </select>
-                <CustomButton :title="'Meklēt'" @click="searchVacancies" />
-            </form>
-        </div>
-
-        <!-- row 2 -->
-        <div>
-            <h2 class="text-xl tracking-wider underline dark:text-gray-50 text-black">Filtri</h2>
-            <form class="flex flex-col">
-                <div
-                    class="items-center gap-5 min-[920px]:grid grid-flow-col justify-stretch flex-wrap max-[920px]:flex">
-                    <!-- amats -->
-                    <select v-model="filterProf"
-                        class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                        <option value="-1" class=" hidden" selected>Amats</option>
-                        <option v-for="el, index in prof" :key="index" :value="index">{{ el.title }}</option>
-                    </select>
-                    <!-- pilseta -->
-                    <select v-model="filterCities"
-                        class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                        <option value="-1" class=" hidden" selected>Vieta</option>
-                        <option v-for="el, index in cities" :key="index" :value="index">{{ el.title }}</option>
-                    </select>
-                    <!-- slodze -->
-                    <select v-model="filterTime"
-                        class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                        <option value="-1" class=" hidden" selected>Slodze</option>
-                        <option v-for="el, index in time" :key="index" :value="index">{{ el.title }}</option>
-                    </select>
-                    <!-- atalgojums -->
-                    <select v-model="filterPay"
-                        class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                        <option value="-1" class=" hidden" selected>Atalgojums</option>
-                        <option v-for="el, index in pay" :key="index" :value="index">{{ el.title }}</option>
-                    </select>
-                </div>
+        <div class="flex justify-center">
+            <div class="max-w-6xl flex flex-col gap-10">
+                <!-- row 1 -->
                 <div>
-                    <CustomButton :title="'Filtrēt'" @click="filter" />
-
+                    <h2 class="text-xl tracking-wider underline dark:text-gray-50 text-black grid mb-4">Meklēšana</h2>
+                    <form
+                        class="items-center gap-5 min-[1200px]:grid grid-flow-col min-[1200px]:justify-stretch flex-wrap max-[1200px]:flex max-[1200px]:justify-center">
+                        <input type="text" placeholder="Vēlamā vakance" v-model="search"
+                            class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 dark:text-gray-50 shadow-md max-[598px]:w-full">
+                        <select v-model="searchlocation"
+                            class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50 shadow-md max-[598px]:w-full">
+                            <option value="-1" selected>Vieta</option>
+                            <option v-for="el, index in cities" :key="index" :value="index">{{ el.title }}</option>
+                        </select>
+                        <CustomButton :title="'Meklēt'" @click="searchVacancies" />
+                    </form>
                 </div>
-            </form>
+                <!-- row 2 -->
+                <div>
+                    <h2 class="text-xl tracking-wider underline dark:text-gray-50 text-black mb-4">Filtri</h2>
+                    <form class="flex flex-col">
+                        <div
+                            class="items-center gap-5 min-[1200px]:grid grid-flow-col min-[1200px]:justify-stretch flex-wrap max-[1200px]:flex max-[1200px]:justify-center">
+                            <!-- amats -->
+                            <select v-model="filterProf"
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full">
+                                <option value="-1" class=" hidden" selected>Amats</option>
+                                <option v-for="el, index in prof" :key="index" :value="index">{{ el.title }}</option>
+                            </select>
+                            <!-- pilseta -->
+                            <select v-model="filterCities"
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full">
+                                <option value="-1" class=" hidden" selected>Vieta</option>
+                                <option v-for="el, index in cities" :key="index" :value="index">{{ el.title }}</option>
+                            </select>
+                            <!-- slodze -->
+                            <select v-model="filterTime"
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full">
+                                <option value="-1" class=" hidden" selected>Slodze</option>
+                                <option v-for="el, index in time" :key="index" :value="index">{{ el.title }}</option>
+                            </select>
+                            <!-- atalgojums -->
+                            <select v-model="filterPay"
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full">
+                                <option value="-1" class=" hidden" selected>Atalgojums</option>
+                                <option v-for="el, index in pay" :key="index" :value="index">{{ el.title }}</option>
+                            </select>
+                            <div>
+                                <CustomButton :title="'Filtrēt'" @click="filter" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
 
         <!-- vacancies -->
-        <div class="">
-            <div class="vaca w-full">
+        <div class="flex justify-center">
+            <div
+                class="min-[1620px]:grid grid-cols-3 gap-10 max-[1620px]:flex max-[1620px]:flex-wrap max-[1620px]:justify-center">
                 <Block v-for="vac in vacancies" :data="vac" :route="'vacancies'" :btnTitle="'Pieteikties'" />
             </div>
 
@@ -77,8 +80,6 @@
 </template>
 <script>
 import Wrapper from '../components/Wrapper.vue'
-import TextField from '../components/TextField.vue'
-import Dropdown from '../components/Dropdown.vue'
 import CustomButton from '../components/CustomButton.vue'
 import Block from '../components/Block.vue'
 export default {
@@ -102,8 +103,6 @@ export default {
     },
     components: {
         Wrapper,
-        TextField,
-        Dropdown,
         Block,
         CustomButton,
     },
