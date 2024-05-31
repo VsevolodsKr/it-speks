@@ -1,23 +1,26 @@
 <template>
     <Wrapper>
-        <div class="text-center font-bold text-black dark:text-gray-50">
-            <h1 class="text-4xl">Administracijas panelis</h1>
-            <h2 class="my-5">Laipni lūgti administracijas panelī, <span class="underline">{{ username
-                    }}</span>!</h2>
-            <h2>Jūs esat: <span class="underline">{{ role == 1 ? "administrators" : "moderators" }}</span></h2>
+        <h1 class="text-4xl text-center font-bold text-black dark:text-gray-50">Administracijas panelis</h1>
+        <div class="flex justify-center">
+            <div
+                class="text-center font-bold text-black dark:text-gray-50 ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl bg-white w-fit">
+                <h2 class="mb-5">Laipni lūgti administracijas panelī, <span class="underline">{{ username
+                        }}</span>!</h2>
+                <h2>Jūs esat: <span class="underline">{{ role == 1 ? "administrators" : "moderators" }}</span></h2>
+            </div>
         </div>
         <div class="flex justify-evenly flex-wrap gap-3 text-black dark:text-gray-50">
-            <h1 :class="[current == 0 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
+            <h1 :class="[current == 0 ? ' bg-emerald-800 text-white ' : 'bg-white dark:bg-zinc-700', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100 shadow-md']"
                 @click="current = 0">
                 Pieteikumi
             </h1>
-            <h1 :class="[current == 1 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
+            <h1 :class="[current == 1 ? ' bg-emerald-800 text-white ' : 'bg-white dark:bg-zinc-700', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100 shadow-md']"
                 @click="current = 1">
                 Vakances</h1>
-            <h1 :class="[current == 2 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
+            <h1 :class="[current == 2 ? ' bg-emerald-800 text-white ' : 'bg-white dark:bg-zinc-700', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100 shadow-md']"
                 @click="current = 2">
                 Aktualitātes</h1>
-            <h1 :class="[current == 3 ? ' bg-emerald-800 text-white ' : '', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100']"
+            <h1 :class="[current == 3 ? ' bg-emerald-800 text-white ' : 'bg-white dark:bg-zinc-700', 'rounded-md py-2 px-8 cursor-pointer transition-all hover:shadow-xl ring-1 ring-gray-100 shadow-md']"
                 @click="current = 3">
                 Lietotāji</h1>
         </div>

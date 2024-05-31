@@ -1,6 +1,6 @@
 <template>
     <div
-        class="ring-1 ring-gray-200 rounded-xl py-5 px-8 flex flex-col justify-between items-center gap-5 text-black dark:text-gray-50 dark:bg-zinc-700 shadow-2xl max-w-md hover:ring-2 transition-all ">
+        class="ring-1 ring-gray-200 rounded-xl py-5 px-8 flex flex-col justify-between items-center gap-5 text-black dark:text-gray-50 bg-white dark:bg-zinc-700 shadow-2xl max-w-md hover:ring-2 transition-all ">
         <h1 class="text-2xl font-bold underline">{{ data.title }}</h1>
         <div class="min-[600px]:w-96 min-w-48 h-48 overflow-hidden rounded-md relative shadow-2xl ">
             <img :src="data.image_path" class="-translate-y-1/2 absolute top-1/2">
@@ -28,7 +28,7 @@ export default {
             window.scrollTo(0, 0);
         },
         truncateDescription(description) {
-            const limit = 100;
+            const limit = 99;
             return description.length > limit ? description.substring(0, limit) + '...' : description;
         }
     }

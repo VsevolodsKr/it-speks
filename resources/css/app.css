@@ -19,3 +19,8 @@
 .border-calm-green{
     border-color: #AAC9A7;
 }
+
+.workspace{
+    background-image: url('../images/bg.svg');
+    
+}

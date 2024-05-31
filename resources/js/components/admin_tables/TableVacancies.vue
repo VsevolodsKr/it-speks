@@ -5,7 +5,8 @@
         <CustomButton :title="'Atjaunot'" @click="getVacancies()" />
     </div>
     <!-- <img src="../../../storage/app/public/uploads/1717001027_download.jpg"> -->
-    <div class="flex justify-center text-black dark:text-gray-50 ">
+    <div
+        class="flex justify-center text-black dark:text-gray-50 ring-1  ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl bg-white">
         <div class="overflow-x-scroll scroll-pl-6 p-5">
             <table class="ring-1 ring-gray-300 rounded-md  w-max ">
                 <tr class="h-12 ring-1 ring-gray-300 rounded-t-md ">
@@ -20,8 +21,11 @@
                 </tr>
                 <tr v-for="v, index in vacancies" :key="index"
                     :class="[(index == vacancies.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed ', 'h-10']">
-                    <td class="p-9 text-center border-r-2 border-gray-300 border-dashed "><img :src="v.image_path"
-                            class="max-w-64 rounded-md"></td>
+                    <td class=" p-9 text-center border-r-2 border-gray-300 border-dashed ">
+                        <div class="w-64 h-40 overflow-hidden rounded-md relative shadow-xl">
+                            <img :src="v.image_path" class="w-full absolute top-1/2 -translate-y-1/2">
+                        </div>
+                    </td>
                     <td class="px-16 text-center border-r-2 border-gray-300 border-dashed ">{{ v.title }}</td>
                     <td class="px-16 text-center border-r-2 border-gray-300 border-dashed">{{ v.company }}</td>
                     <td class="px-10 text-center border-r-2 border-gray-300 border-dashed">{{ v.time }}</td>

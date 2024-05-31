@@ -2,7 +2,7 @@
     <Wrapper>
         <!-- row1 -->
         <div
-            class="flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row text-black dark:text-gray-50">
+            class="ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 bg-white shadow-xl flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row text-black dark:text-gray-50">
             <!-- col1 -->
             <div>
                 <!-- title -->
@@ -48,7 +48,7 @@
 
         <!-- row 3 -->
         <div
-            class="flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row dark:text-gray-50">
+            class="ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 bg-white shadow-xl flex justify-between gap-28 max-[768px]:flex-col md:items-center md:flex-col lg:items-start lg:flex-row dark:text-gray-50">
             <!-- lcol -->
             <div class="flex flex-col items-start font-bold tracking-wide">
                 <img class="min-[640px]:max-w-7xl" src="../../images/main2.png">

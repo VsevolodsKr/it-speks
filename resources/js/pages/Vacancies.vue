@@ -6,7 +6,8 @@
         </div>
 
         <div class="flex justify-center">
-            <div class="max-w-6xl flex flex-col gap-10">
+            <div
+                class="max-w-6xl flex flex-col gap-10 ring-1 ring-gray-300 rounded-xl p-10 shadow-xl dark:bg-zinc-700 bg-white">
                 <!-- row 1 -->
                 <div>
                     <h2 class="text-xl tracking-wider underline dark:text-gray-50 text-black grid mb-4">Meklēšana</h2>

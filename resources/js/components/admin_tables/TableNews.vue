@@ -4,7 +4,8 @@
         <CustomButton :title="'Pievienot aktualitāti'" @click="toggleAdd" />
         <CustomButton :title="'Atjaunot'" @click="getNews()" />
     </div>
-    <div class="flex justify-center text-black dark:text-gray-50 ">
+    <div
+        class="flex justify-center text-black dark:text-gray-50  ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl bg-white">
         <div class="overflow-x-scroll scroll-pl-6 p-5">
             <table class="ring-1 ring-gray-300 rounded-md  w-max ">
                 <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
@@ -14,8 +15,11 @@
                 </tr>
                 <tr v-for="n, index in news" :key="index"
                     :class="[(index == news.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
-                    <td class="text-center border-r-2 border-gray-300 border-dashed p-9"><img :src="n.image_path"
-                            class="max-w-64 rounded-md"></td>
+                    <td class="text-center border-r-2 border-gray-300 border-dashed p-9">
+                        <div class="w-64 h-40 overflow-hidden rounded-md relative shadow-xl">
+                            <img :src="n.image_path" class="w-full absolute top-1/2 -translate-y-1/2">
+                        </div>
+                    </td>
                     <td class="text-center border-r-2 border-gray-300 border-dashed px-48">{{ n.title }}</td>
                     <td class="text-center border-r-2 border-gray-300 border-dashed max-w-96 px-8">{{ n.short_desc }}
                     </td>

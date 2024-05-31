@@ -61,9 +61,8 @@
 
         <!-- logo -->
         <div class="max-[658px]:w-96">
-            <img v-if="!isDark" class="mt-16" src="../../../images/LOGO.png">
-            <img v-else class="mt-16" src="../../../images/LOGO-dark.png">
-            <p class="text-center tracking-widest mt-16">IT Spēks &copy; 2024</p>
+            <img class="max-w-52" src="../../../images/logo.svg">
+            <p class="text-center tracking-widest mt-5">IT Spēks &copy; 2024</p>
         </div>
     </footer>
 </template>

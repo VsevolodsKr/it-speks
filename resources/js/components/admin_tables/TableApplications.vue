@@ -1,40 +1,43 @@
 <template>
     <h3 class="text-center font-bold text-black dark:text-gray-50">Kopā ir {{ applications.length }} pieteikumi</h3>
-    <div class="flex justify-center text-black dark:text-gray-50">
-
-        <div class="overflow-x-scroll scroll-pl-6 p-5">
-            <table class="ring-1 ring-gray-300 rounded-md w-max ">
-                <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
-                    <th class="px-5">Vārds</th>
-                    <th class="px-5">Uzvārds</th>
-                    <th>Datums</th>
-                    <th>Tālrunis</th>
-                    <th>E-pasts</th>
-                    <th>Komentāri</th>
-                    <th>Statuss</th>
-                </tr>
-                <tr v-for="a, index in applications" :key="index"
-                    :class="[(index == applications.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
-                    <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.name }}</td>
-                    <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.surname }}</td>
-                    <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.date }}</td>
-                    <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.phone }}</td>
-                    <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.email }}</td>
-                    <td class="py-3 text-center border-r-2 border-gray-300 border-dashed">
-                        <button
-                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                            @click="toggleRead(a)"><i class="fa-solid fa-book-open"></i></button>
-                    </td>
-                    <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ statenames[a.state].title
+    <div class="flex justify-center">
+        <div
+            class="flex justify-center text-black dark:text-gray-50 ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl w-fit bg-white">
+            <div class="overflow-x-scroll scroll-pl-6 p-5">
+                <table class="ring-1 ring-gray-300 rounded-md w-max ">
+                    <tr class="h-12 ring-1 ring-gray-300 rounded-t-md">
+                        <th class="px-5">Vārds</th>
+                        <th class="px-5">Uzvārds</th>
+                        <th>Datums</th>
+                        <th>Tālrunis</th>
+                        <th>E-pasts</th>
+                        <th>Komentāri</th>
+                        <th>Statuss</th>
+                    </tr>
+                    <tr v-for="a, index in applications" :key="index"
+                        :class="[(index == applications.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
+                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.name }}</td>
+                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.surname }}</td>
+                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.date }}</td>
+                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.phone }}</td>
+                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.email }}</td>
+                        <td class="py-3 text-center border-r-2 border-gray-300 border-dashed">
+                            <button
+                                class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                                @click="toggleRead(a)"><i class="fa-solid fa-book-open"></i></button>
+                        </td>
+                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{
+                            statenames[a.state].title
                         }}
-                    </td>
-                    <td class="p-3 text-center">
-                        <button
-                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
-                            @click="toggleEdit(a)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
-                    </td>
-                </tr>
-            </table>
+                        </td>
+                        <td class="p-3 text-center">
+                            <button
+                                class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                                @click="toggleEdit(a)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 
