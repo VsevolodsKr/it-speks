@@ -22,20 +22,19 @@
                     <img :src="current.image_path" class="absolute top-1/2 -translate-y-1/2">
                 </div>
                 <h3 class="font-bold text-2xl text-center mt-10">Pieteikties vakancei<br>Front-end developer</h3>
-                <form class="flex flex-col items-center" method="post">
-
-                    <input type="text" placeholder="Vārds"
+                <form class="flex flex-col items-center" @submit.prevent="add">
+                    <input type="text" v-model="new_a.name" placeholder="Vārds"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md" />
-                    <input type="text" placeholder="Uzvārds"
+                    <input type="text" v-model="new_a.surname" placeholder="Uzvārds"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md" />
-                    <input type="tel" placeholder="Tālrunis"
+                    <input type="tel" v-model="new_a.phone" placeholder="Tālrunis"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md" />
-                    <input type="email" placeholder="E-pasts"
+                    <input type="email" v-model="new_a.email" placeholder="E-pasts"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md" />
-                    <textarea col="30" rows="8" placeholder="Papildinformācija"
+                    <textarea v-model="new_a.comments" col="30" rows="8" placeholder="Papildinformācija"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 resize-none bg-white dark:bg-zinc-700 w-full  shadow-md"></textarea>
                     <CustomButton :title="'Pievienot dokumentu'" :gray="true" class="w-full mb-5" />
-                    <CustomButton :title="'Pieteikties'" class="w-full" />
+                    <CustomButton :title="'Pieteikties'" :type="'submit'" class="w-full"/>
                 </form>
             </div>
         </div>
@@ -45,12 +44,17 @@
 import Wrapper from "../../components/Wrapper.vue"
 import CustomButton from "../../components/CustomButton.vue"
 
-import axios from "axios";
-
 export default {
     data() {
         return {
             current: null,
+            new_a: {
+                name: '',
+                surname: '',
+                phone: '',
+                email: '',
+                comments: '',
+            }
         }
     },
     mounted() {
@@ -69,6 +73,20 @@ export default {
                     console.error(err);
                 });
         },
+        add(){
+            let app_data = new FormData();
+            app_data.append('name', this.new_a.name);
+            app_data.append('surname', this.new_a.surname);
+            app_data.append('phone', this.new_a.phone);
+            app_data.append('email', this.new_a.email);
+            app_data.append('comments', this.new_a.comments);
+            axios.post('/api/applications/add', app_data).then((r) => {
+                    console.log(r.app_data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
     },
 
     components: {

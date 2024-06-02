@@ -11,7 +11,6 @@ class Applications extends Model
     protected $fillable = [
         'name',
         'surname',
-        'birth_date',
         'phone',
         'email',
         'comments',

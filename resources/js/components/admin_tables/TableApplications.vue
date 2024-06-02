@@ -101,35 +101,7 @@ import CustomButton from '../CustomButton.vue';
 export default {
     data: () => {
         return {
-            applications: [
-                {
-                    name: 'Jānis',
-                    surname: 'Jansons',
-                    date: '2022-01-01',
-                    phone: '21234567',
-                    email: 'janis.jan@gmail.com',
-                    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna. Neque egestas congue quisque egestas diam in arcu cursus euismod.1',
-                    state: 0,
-                },
-                {
-                    name: 'Kārlis',
-                    surname: 'Karlos',
-                    date: '2024-03-05',
-                    phone: '21254367',
-                    email: 'karlis.kar@gmail.com',
-                    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna. Neque egestas congue quisque egestas diam in arcu cursus euismod.2',
-                    state: 1,
-                },
-                {
-                    name: 'Ieva',
-                    surname: 'Priede',
-                    date: '2024-05-06',
-                    phone: '21239257',
-                    email: 'ieva.pri@gmail.com',
-                    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna. Neque egestas congue quisque egestas diam in arcu cursus euismod.3',
-                    state: 2,
-                },
-            ],
+            applications: [],
             statenames: [
                 { title: 'Iesniegts' },
                 { title: 'Apstiprināts' },

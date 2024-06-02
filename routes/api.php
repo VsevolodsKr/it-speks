@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\ApplicationsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,7 @@ Route::post('/news/update/{id}', [NewsController::class, 'update']);
 Route::delete('/news/delete/{id}', [NewsController::class, 'delete']);
 
 
+
+//applications
+Route::get('/applications', [ApplicationsController::class, 'index']);
+Route::post('/applications/add', [ApplicationsController::class, 'store']);
