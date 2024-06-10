@@ -41,6 +41,7 @@ export default {
             login_data.append('username', this.login_form.username);
             login_data.append('password', this.login_form.password);
             axios.post('/api/login/enter', login_data).then((r) => console.log(r)).catch((e) => console.error(e));
+            this.$router.push('/admin', login_data);
         }
     }
 }

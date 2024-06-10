@@ -4,8 +4,7 @@
         <div class="flex justify-center">
             <div
                 class="text-center font-bold text-black dark:text-gray-50 ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl bg-white w-fit">
-                <h2 class="mb-5">Laipni lūgti administracijas panelī, <span class="underline">{{ username
-                        }}</span>!</h2>
+                <h2 class="mb-5">Laipni lūgti administracijas panelī, <span class="underline">{{ username }}</span>!</h2>
                 <h2>Jūs esat: <span class="underline">{{ role == 1 ? "administrators" : "moderators" }}</span></h2>
             </div>
         </div>
@@ -53,9 +52,9 @@ import TableUsers from '../components/admin_tables/TableUsers.vue';
 export default {
     data: () => {
         return {
-            username: 'user2',
+            username: '',
             user: {
-                id: 1,
+                id: '',
             },
             role: 1,
             current: 0,
@@ -71,6 +70,5 @@ export default {
         TableNews,
         TableUsers
     },
-
 }
 </script>

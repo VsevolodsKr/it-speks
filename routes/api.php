@@ -38,3 +38,4 @@ Route::post('vacancies/{id}', [ApplicationsController::class, 'store']);
 
 //login
 Route::post('/login/enter', [LoginController::class, 'enter']);
+Route::get('/admin/{id}', [LoginController::class, 'index']);

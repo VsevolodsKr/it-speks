@@ -120,10 +120,22 @@ export default {
             showDelete: false,
         }
     },
+    mounted(){
+        this.getApplications();
+    },
     components: {
         CustomButton,
     },
     methods: {
+        getApplications() {
+            axios.get('/api/applications')
+                .then((response) => {
+                    this.applications = response.data
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+        },
         toggleRead(a) {
             this.showRead = !this.showRead;
             this.save(a);
