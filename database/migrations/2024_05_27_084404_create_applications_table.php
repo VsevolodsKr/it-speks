@@ -18,7 +18,8 @@ return new class extends Migration {
             $table->string('phone');
             $table->string('email');
             $table->text('comments')->nullable();
-            $table->enum('status', [0, 1, 2, 3]);
+            $table->integer('vacancy');
+            $table->enum('status', [0, 1, 2, 3])->default(0);
             $table->timestamps();
         });
     }

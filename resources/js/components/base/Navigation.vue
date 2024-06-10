@@ -28,7 +28,7 @@
 
     <!-- hidden menu (responsive design) -->
     <div v-if="show"
-        class="hidden navb flex flex-col gap-2 bg-white shadow-xl rounded-md w-max p-5 fixed right-2 top-36 text-black dark:text-gray-50 dark:bg-zinc-700 z-50">
+        class="hidden navb flex flex-col gap-2 bg-white shadow-xl rounded-md w-max p-5 fixed right-2 top-36 text-black dark:text-gray-50 dark:bg-zinc-700 z-40">
         <router-link to="/about">Par mums</router-link>
         <router-link to="/vacancies">Vakances</router-link>
         <router-link to="/news">Aktualitātes</router-link>

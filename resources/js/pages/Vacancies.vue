@@ -16,7 +16,7 @@
                         <input type="text" placeholder="Vēlamā vakance" v-model="search"
                             class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 dark:text-gray-50 shadow-md max-[598px]:w-full">
                         <select v-model="searchlocation"
-                            class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50 shadow-md max-[598px]:w-full">
+                            class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50 shadow-md max-[598px]:w-full max-w-48">
                             <option value="-1" selected>Vieta</option>
                             <option v-for="el, index in cities" :key="index" :value="index">{{ el.title }}</option>
                         </select>
@@ -31,25 +31,25 @@
                             class="items-center gap-5 min-[1200px]:grid grid-flow-col min-[1200px]:justify-stretch flex-wrap max-[1200px]:flex max-[1200px]:justify-center">
                             <!-- amats -->
                             <select v-model="filterProf"
-                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full">
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full max-w-48">
                                 <option value="-1" class=" hidden" selected>Amats</option>
                                 <option v-for="el, index in prof" :key="index" :value="index">{{ el.title }}</option>
                             </select>
                             <!-- pilseta -->
                             <select v-model="filterCities"
-                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full">
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full max-w-48">
                                 <option value="-1" class=" hidden" selected>Vieta</option>
                                 <option v-for="el, index in cities" :key="index" :value="index">{{ el.title }}</option>
                             </select>
                             <!-- slodze -->
                             <select v-model="filterTime"
-                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full">
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full max-w-48">
                                 <option value="-1" class=" hidden" selected>Slodze</option>
                                 <option v-for="el, index in time" :key="index" :value="index">{{ el.title }}</option>
                             </select>
                             <!-- atalgojums -->
                             <select v-model="filterPay"
-                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full">
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 bg-white dark:bg-zinc-700 text-black dark:text-gray-50  shadow-md max-[598px]:w-full max-w-48">
                                 <option value="-1" class=" hidden" selected>Atalgojums</option>
                                 <option v-for="el, index in pay" :key="index" :value="index">{{ el.title }}</option>
                             </select>
