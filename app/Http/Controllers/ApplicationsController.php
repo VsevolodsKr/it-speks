@@ -7,26 +7,31 @@ use Illuminate\Http\Request;
 
 class ApplicationsController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return Applications::orderBy('created_at', 'desc')->get();
     }
-    
-    public function store(Request $request){
+
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required',
             'surname' => 'required',
+            'date' => 'required',
             'phone' => 'required',
             'email' => 'required',
-            'comments' => 'nullable'
+            'comments' => 'nullable',
+            'vacancy' => 'required'
         ]);
         $application = new Applications;
         $application->name = $request->name;
         $application->surname = $request->surname;
         $application->phone = $request->phone;
         $application->email = $request->email;
+        $application->birth_date = $request->date;
         $application->comments = $request->comments;
-        $application->status = 0;
+        $application->vacancy = $request->vacancy;
         $application->save();
-        return response()->json(['message' => 'Your application has been sended!', 'data' => $application]);
+        return response()->json(['message' => 'Your application has been sent!', 'data' => $application]);
     }
 }
