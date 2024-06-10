@@ -3,6 +3,7 @@
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,8 @@ Route::delete('/news/delete/{id}', [NewsController::class, 'delete']);
 
 //applications
 Route::get('/applications', [ApplicationsController::class, 'index']);
-Route::post('/applications/add', [ApplicationsController::class, 'store']);
+Route::post('vacancies/{id}', [ApplicationsController::class, 'store']);
+
+
+//login
+Route::post('/login/enter', [LoginController::class, 'enter']);

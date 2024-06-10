@@ -22,7 +22,7 @@
                     <img :src="current.image_path" class="absolute top-1/2 -translate-y-1/2">
                 </div>
                 <h3 class="font-bold text-2xl text-center mt-10">Pieteikties vakancei<br>Front-end developer</h3>
-                <form class="flex flex-col items-center" @submit.prevent="add">
+                <form class="flex flex-col items-center" method="post">
                     <input type="text" v-model="new_a.name" placeholder="Vārds"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md" />
                     <input type="text" v-model="new_a.surname" placeholder="Uzvārds"
@@ -34,7 +34,7 @@
                     <textarea v-model="new_a.comments" col="30" rows="8" placeholder="Papildinformācija"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 resize-none bg-white dark:bg-zinc-700 w-full  shadow-md"></textarea>
                     <CustomButton :title="'Pievienot dokumentu'" :gray="true" class="w-full mb-5" />
-                    <CustomButton :title="'Pieteikties'" :type="'submit'" class="w-full"/>
+                    <CustomButton :title="'Pieteikties'" :type="'submit'" class="w-full" onclick="add"/>
                 </form>
             </div>
         </div>
@@ -80,8 +80,8 @@ export default {
             app_data.append('phone', this.new_a.phone);
             app_data.append('email', this.new_a.email);
             app_data.append('comments', this.new_a.comments);
-            axios.post('/api/applications/add', app_data).then((r) => {
-                    console.log(r.app_data);
+            axios.post('/api/vacancies/'+this.$route.params.id, app_data).then((r) => {
+                    console.log(r.data);
                 })
                 .catch(error => {
                     console.error(error);
