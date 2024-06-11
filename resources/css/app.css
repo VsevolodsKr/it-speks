@@ -24,3 +24,8 @@
     background-image: url('../images/bg.svg');
     
 }
+
+*::selection {
+    background: #7e9e7b;
+    color: white;
+  }

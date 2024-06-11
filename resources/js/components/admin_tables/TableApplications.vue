@@ -18,7 +18,7 @@
                         :class="[(index == applications.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10']">
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.name }}</td>
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.surname }}</td>
-                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.date }}</td>
+                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.birth_date }}</td>
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.phone }}</td>
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.email }}</td>
                         <td class="py-3 text-center border-r-2 border-gray-300 border-dashed">
@@ -27,7 +27,7 @@
                                 @click="toggleRead(a)"><i class="fa-solid fa-book-open"></i></button>
                         </td>
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{
-                            statenames[a.state].title
+                            statenames[a.status].title
                         }}
                         </td>
                         <td class="p-3 text-center">
@@ -120,7 +120,7 @@ export default {
             showDelete: false,
         }
     },
-    mounted(){
+    mounted() {
         this.getApplications();
     },
     components: {
@@ -131,6 +131,7 @@ export default {
             axios.get('/api/applications')
                 .then((response) => {
                     this.applications = response.data
+                    console.log(this.applications)
                 })
                 .catch((err) => {
                     console.error(err)
@@ -147,11 +148,11 @@ export default {
         save(a) {
             this.name = a.name;
             this.surname = a.surname;
-            this.date = a.date;
+            this.date = a.birth_date;
             this.phone = a.phone;
             this.email = a.email;
-            this.text = a.info;
-            this.state = a.state;
+            this.text = a.comments;
+            this.state = a.status;
         },
     }
 }
