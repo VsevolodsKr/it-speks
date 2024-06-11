@@ -18,8 +18,9 @@
                 class="hover:ring-1 ring-zinc-300 rounded-md px-5 py-1 transition-all hover:shadow-md">Vakances</router-link>
             <router-link to="/news"
                 class="hover:ring-1 ring-zinc-300 rounded-md px-5 py-1 transition-all hover:shadow-md">Aktualitātes</router-link>
-            <router-link to="/login"
-                class="hover:ring-1 ring-zinc-300 rounded-md px-5 py-1 transition-all hover:shadow-md">Ielogoties</router-link>
+            <router-link :to="user.data ? '/admin' : '/login'"
+                class="hover:ring-1 ring-zinc-300 rounded-md px-5 py-1 transition-all hover:shadow-md">{{ user.data ?
+                    user.data.username : 'Ielogoties'}}</router-link>
             <button><i @click="toggleDark()"
                     :class="[!isDark ? 'fa-solid fa-moon text-indigo-950 hover:text-indigo-500' : 'fa-regular fa-sun text-white hover:text-orange-100', 'text-3xl  ring-1 ring-gray-300 py-2 px-4 rounded-3xl  hover:shadow-xl ml-6 active:bg-gray-100 transition-all']"></i></button>
         </div>
@@ -39,7 +40,7 @@
 </template>
 <script setup>
 import { useDark, useToggle } from '@vueuse/core';
-
+import { mapState } from 'vuex/dist/vuex.cjs.js';
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 </script>
@@ -49,6 +50,9 @@ export default {
         return {
             show: false,
         }
+    },
+    computed: {
+        ...mapState(['user']),
     },
     methods: {
         showMenu() {
