@@ -53,7 +53,7 @@ export default {
             login_data.append('password', this.login_form.password);
             axios.post('/api/login/enter', login_data)
                 .then((r) => {
-                    const token = r.data;
+                    const token = r.data.token;
 
                     localStorage.setItem('token', token);
 
