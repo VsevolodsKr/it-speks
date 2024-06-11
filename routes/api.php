@@ -4,6 +4,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,9 @@ Route::post('vacancies/{id}', [ApplicationsController::class, 'store']);
 //login
 Route::post('/login/enter', [LoginController::class, 'enter']);
 Route::get('/admin/{id}', [LoginController::class, 'index']);
+
+//users
+Route::get('/users', [UsersController::class, 'index']);
+Route::post('/users/add', [UsersController::class, 'store']);
+Route::delete('/users/delete/{id}', [UsersController::class, 'delete']);
+Route::post('/users/update/{id}', [UsersController::class, 'update']);

@@ -42,7 +42,7 @@
         </div>
         <h3 class="font-bold text-center my-4">Vai Jūs tiešām gribāt nodzēst lietotāju {{ current.username }}?</h3>
         <div class="flex justify-center gap-4 mt-12">
-            <CustomButton :title="'Apstiprināt'" :red="true" />
+            <CustomButton @click="deleteUser" :title="'Apstiprināt'" :red="true" />
             <CustomButton @click="toggleDelete" :title="'Atcelt'" :gray="true" />
         </div>
     </div>
@@ -92,7 +92,7 @@
                 </td>
             </tr>
         </table>
-        <CustomButton :title="'Saglabāt'" />
+        <CustomButton :title="'Saglabāt'" @click="editUser"/>
     </div>
 
     <!-- hidden PASSWORD menu -->
@@ -168,7 +168,7 @@
                 </td>
             </tr>
         </table>
-        <CustomButton :title="'Saglabāt'" />
+        <CustomButton :title="'Saglabāt'" @click="add"/>
     </div>
 </template>
 <script setup>
@@ -182,29 +182,7 @@ export default {
     props: ['role', 'user'],
     data: () => {
         return {
-            users: [
-                {
-                    id: 0,
-                    username: 'user1',
-                    role: 0,
-                    oldpassword: '',
-                    newpassword: '',
-                },
-                {
-                    id: 1,
-                    username: 'user2',
-                    role: 1,
-                    oldpassword: '',
-                    newpassword: '',
-                },
-                {
-                    id: 2,
-                    username: 'user3',
-                    role: 1,
-                    oldpassword: '',
-                    newpassword: '',
-                },
-            ],
+            users: [],
             roles: [
                 'moderators',
                 'administrators',
@@ -226,10 +204,22 @@ export default {
             showPass: false,
         }
     },
+    mounted(){
+        this.getUsers()
+    },
     components: {
         CustomButton,
     },
     methods: {
+        getUsers() {
+            axios.get('api/users')
+                .then((response) => {
+                    this.users = response.data
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+        },
         toggleEdit(u) {
             this.showEdit = !this.showEdit
             this.showRead = false
@@ -256,7 +246,48 @@ export default {
             this.showEdit = false
             this.showPass = false
             this.current = u;
-        }
-    }
+        },
+        add(e){
+            let user_data = new FormData();
+            user_data.append('username', this.new_u.username);
+            user_data.append('password', this.new_u.password);
+            user_data.append('role', this.new_u.role);
+            axios.post('/api/users/add', user_data)
+                .then((r) => {
+                    console.log(r.data)
+                    this.getUsers();
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+        },
+        deleteUser(){
+            axios.delete('/api/users/delete/' + this.current.id)
+                .then((res) => {
+                    console.log(res)
+                    this.getUsers()
+                    this.toggleDelete(null);
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+        },
+        editUser(){
+            let user_data = new FormData();
+            user_data.append('username', this.current.username);
+            user_data.append('role', this.current.role);
+            user_data.append('oldpassword', this.current.oldpassword);
+            user_data.append('newpassword', this.current.newpassword);
+            axios.post('/api/users/update/'+ this.current.id, user_data)
+                .then((r) => {
+                    console.log(r.data)
+                    this.getUsers();
+                    this.toggleEdit(null);
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+        },
+    },
 }
 </script>

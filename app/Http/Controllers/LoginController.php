@@ -23,7 +23,7 @@ class LoginController extends Controller
             return response()->json(['message' => 'User not found!', 'data' => '']);
         } else {
             if (Hash::check($request->password, $user->password)) {
-                return response()->json(['message' => 'User successfully founded!', 'data' => $user]);
+                return response()->json(['message' => 'User successfully found!', 'data' => $user]);
             } else {
                 return response()->json(['message' => 'Incorrect password!', 'data' => '']);
             }

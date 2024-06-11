@@ -327,7 +327,7 @@ export default {
             this.file = null
         },
         getVacancies() {
-            axios.get('api/vacancies')
+            axios.get('/api/vacancies')
                 .then((response) => {
                     this.vacancies = response.data
                     this.vacancies.forEach((v) => {

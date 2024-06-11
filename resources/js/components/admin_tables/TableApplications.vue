@@ -152,8 +152,7 @@ export default {
             this.email = a.email;
             this.text = a.info;
             this.state = a.state;
-        }
-
+        },
     }
 }
 </script>
