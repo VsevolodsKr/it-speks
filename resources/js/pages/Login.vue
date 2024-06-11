@@ -22,6 +22,9 @@
 import Wrapper from '../components/Wrapper.vue'
 import CustomButton from '../components/CustomButton.vue'
 import axios from 'axios';
+import { useDark } from '@vueuse/core';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 export default {
     data: () => {
         return {
@@ -37,14 +40,45 @@ export default {
     },
     methods: {
         login() {
+
+            const isDark = useDark();
+            const id = toast.loading('Please wait...', { "position": "top-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
+
             let login_data = new FormData();
             login_data.append('username', this.login_form.username);
             login_data.append('password', this.login_form.password);
             axios.post('/api/login/enter', login_data)
                 .then((r) => {
-                    console.log(r)
-                    this.$router.push('/admin', login_data);
-                }).catch((e) => console.error(e));
+                    const token = r.data;
+
+                    localStorage.setItem('token', token);
+
+                    this.$store.commit("setUser", r.data.data);
+
+                    this.notification(id, 'Logged in successfully!', 'success');
+
+                    setTimeout(() => {
+                        this.$router.push('/admin', login_data);
+                    }, 1000);
+
+
+                }).catch((e) => {
+                    console.log(e)
+                    this.notification(id, e.response.data.message, 'error')
+                });
+        },
+        notification(id, msg, stat) {
+            toast.update(id, {
+                render: msg,
+                autoClose: true,
+                closeOnClick: true,
+                closeButton: true,
+                type: stat,
+                "transition": "slide",
+                isLoading: false,
+            });
+            toast.done(id);
         }
     }
 }

@@ -4,8 +4,13 @@
         <div class="flex justify-center">
             <div
                 class="text-center font-bold text-black dark:text-gray-50 ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl bg-white w-fit">
-                <h2 class="mb-5">Laipni lūgti administracijas panelī, <span class="underline">{{ username }}</span>!</h2>
-                <h2>Jūs esat: <span class="underline">{{ role == 1 ? "administrators" : "moderators" }}</span></h2>
+                <h2 class="mb-5">Laipni lūgti administracijas panelī, <span class="underline">{{ user.data.username
+                        }}</span>!
+                </h2>
+                <h2 class="mb-5">Jūs esat: <span class="underline">{{ user.data.role == 1 ? "administrators" :
+                    "moderators" }}</span>
+                </h2>
+                <CustomButton :title="'Izlogoties'" @click="logout" />
             </div>
         </div>
         <div class="flex justify-evenly flex-wrap gap-3 text-black dark:text-gray-50">
@@ -49,26 +54,39 @@ import TableApplications from '../components/admin_tables/TableApplications.vue'
 import TableVacancies from '../components/admin_tables/TableVacancies.vue';
 import TableNews from '../components/admin_tables/TableNews.vue';
 import TableUsers from '../components/admin_tables/TableUsers.vue';
+import { mapState } from 'vuex/dist/vuex.cjs.js';
+import CustomButton from '../components/CustomButton.vue';
+
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+import { useDark } from '@vueuse/core';
 export default {
     data: () => {
         return {
-            username: '',
-            user: {
-                id: '',
-            },
-            role: 1,
             current: 0,
             imagename: null,
 
         }
     },
     components: {
-
         Wrapper,
         TableApplications,
         TableVacancies,
         TableNews,
-        TableUsers
+        TableUsers,
+        CustomButton,
     },
+    computed: {
+        ...mapState(['user']),
+    },
+    methods: {
+        logout() {
+            this.$store.commit('logout')
+            this.$router.push('/login')
+        },
+    }
+    // mounted() {
+    //     console.log(this.user)
+    // }
 }
 </script>

@@ -17,6 +17,8 @@
         "@vitejs/plugin-vue": "^5.0.4",
         "@vueuse/core": "^10.9.0",
         "vue": "^3.4.27",
-        "vue-router": "^4.3.2"
+        "vue-router": "^4.3.2",
+        "vue3-toastify": "^0.2.1",
+        "vuex": "^4.0.2"
     }
 }

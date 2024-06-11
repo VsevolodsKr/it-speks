@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration {
     /**
@@ -16,7 +18,7 @@ return new class extends Migration {
             $table->string('password');
             $table->enum('role', [0, 1]);
             // $table->string('email')->unique();
-            // $table->rememberToken();
+            $table->rememberToken();
             $table->timestamps();
             // $table->timestamp('email_verified_at')->nullable();
         });
@@ -35,6 +37,13 @@ return new class extends Migration {
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+
+        User::create([
+            'username' => 'mechanical',
+            'role' => 0,
+            'password' => Hash::make('password'),
+        ]);
     }
 
     /**
