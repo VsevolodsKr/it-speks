@@ -1,8 +1,8 @@
 <template>
     <div class="flex flex-col items-center gap-8 text-black dark:text-gray-50 ">
         <h3 class="text-center font-bold">Kopā ir {{ users.length }} lietotāji</h3>
-        <CustomButton v-if="role == 1" :title="'Pievienot lietotāju'" @click="toggleAdd" />
-        <CustomButton v-else :title="'Nomainīt paroli'" @click="togglePass" />
+        <CustomButton v-if="user.data.role == 1" :title="'Pievienot lietotāju'" @click="toggleAdd" />
+        <CustomButton :title="'Nomainīt paroli'" @click="togglePass" />
     </div>
     <div class="flex justify-center">
         <div
@@ -13,15 +13,18 @@
                         <th>Lietotājvārds</th>
                     </tr>
                     <tr v-for="u, index in users" :key="index"
-                        :class="[(index == users.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10', user.id == u.id ? (isDark ? 'bg-zinc-700' : 'bg-emerald-100') : '']">
-                        <td class="text-center border-r-2 border-gray-300 border-dashed px-48">{{ u.username }}</td>
-                        <td class="text-center border-r-2 border-gray-300 border-dashed px-5">{{ roles[u.role] }}</td>
-                        <td v-if="role == 1" class="text-center border-r-2 border-gray-300 border-dashed p-2">
+                        :class="[(index == users.length - 1) ? '' : 'border-b-gray-300 border-b-2 border-dashed', 'h-10', user.data.id == u.id ? 'dark:bg-emerald-700 bg-calm-green' : '']">
+                        <td class="text-center border-r-2 border-gray-300 border-dashed px-48">{{ u.username }}{{
+                            user.id }} </td>
+                        <td
+                            :class="[user.data.role == 1 ? 'border-r-2 border-gray-300 border-dashed' : '', 'text-center px-5']">
+                            {{ roles[u.role] }}</td>
+                        <td v-if="user.data.role == 1" class="text-center border-r-2 border-gray-300 border-dashed p-2">
                             <button
                                 class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                                 @click="toggleEdit(u)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
                         </td>
-                        <td v-if="role == 1" class="text-center p-2">
+                        <td v-if="user.data.role == 1" class="text-center p-2">
                             <button
                                 class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                                 @click="toggleDelete(u)"><i class="fa-solid fa-trash"></i></button>
@@ -66,7 +69,7 @@
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
-            <tr>
+            <tr v-if="user.data.id != current.id">
                 <td class="font-bold">Loma</td>
                 <td class="p-4">
                     <select v-model="current.role"
@@ -75,16 +78,16 @@
                     </select>
                 </td>
             </tr>
-            <br class="border-b-2 border-dashed border-gray-300 w-full">
-            <tr>
+            <!-- <br class="border-b-2 border-dashed border-gray-300 w-full"> -->
+            <!-- <tr>
                 <td class="font-bold">Vecā parole (atstājiet tukšu, ja nemaināt paroli)</td>
                 <td class="p-4">
                     <input type="text" v-model="current.oldpassword"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
 
                 </td>
-            </tr>
-            <tr>
+            </tr> -->
+            <tr v-if="user.data.id != current.id">
                 <td class="font-bold">Jaunā parole</td>
                 <td class="p-4">
                     <input type="text" v-model="current.newpassword"
@@ -92,12 +95,12 @@
                 </td>
             </tr>
         </table>
-        <CustomButton :title="'Saglabāt'" @click="editUser"/>
+        <CustomButton :title="'Saglabāt'" @click="editUser" />
     </div>
 
     <!-- hidden PASSWORD menu -->
     <div v-if="showPass"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen">
+        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-zinc-700 text-black dark:text-gray-50 min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen">
         <div class="flex justify-between w-full">
             <h1 class="font-bold text-xl">Paroles maiņa</h1>
             <button @click="togglePass" class="text-3xl transition-colors hover:text-emerald-600">
@@ -109,7 +112,7 @@
             <tr>
                 <td class="font-bold">Vecā parole</td>
                 <td class="p-4">
-                    <input type="text" v-model="edituser.oldpassword"
+                    <input type="password" v-model="edituser.oldpassword"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
 
                 </td>
@@ -117,19 +120,19 @@
             <tr>
                 <td class="font-bold">Jaunā parole</td>
                 <td class="p-4">
-                    <input type="text" v-model="edituser.newpassword"
+                    <input type="password" v-model="edituser.newpassword"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
             <tr>
                 <td class="font-bold">Jaunā parole atkārtoti</td>
                 <td class="p-4">
-                    <input type="text" v-model="edituser.newpassword_repeat"
+                    <input type="password" v-model="edituser.newpassword_repeat"
                         class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
         </table>
-        <CustomButton :title="'Saglabāt'" @click="changePassword"/>
+        <CustomButton :title="'Saglabāt'" @click="changePassword" />
     </div>
 
 
@@ -154,8 +157,8 @@
             <tr>
                 <td class="font-bold">Parole</td>
                 <td class="p-4">
-                    <textarea v-model="new_u.password"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
+                    <input type="password" v-model="new_u.password"
+                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
                 </td>
             </tr>
             <tr>
@@ -168,7 +171,7 @@
                 </td>
             </tr>
         </table>
-        <CustomButton :title="'Saglabāt'" @click="add"/>
+        <CustomButton :title="'Saglabāt'" @click="add" />
     </div>
 </template>
 <script setup>
@@ -178,8 +181,15 @@ const isDark = useDark();
 </script>
 <script>
 import CustomButton from '../CustomButton.vue';
+import { useDark } from '@vueuse/core';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+import { mapState } from 'vuex/dist/vuex.cjs.js';
 export default {
     props: ['role', 'user'],
+    computed: {
+        ...mapState(['user']),
+    },
     data: () => {
         return {
             users: [],
@@ -204,7 +214,7 @@ export default {
             showPass: false,
         }
     },
-    mounted(){
+    mounted() {
         this.getUsers()
     },
     components: {
@@ -247,7 +257,10 @@ export default {
             this.showPass = false
             this.current = u;
         },
-        add(e){
+        add(e) {
+            const isDark = useDark();
+            const id = toast.loading('Pievienojam lietotāju...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
             let user_data = new FormData();
             user_data.append('username', this.new_u.username);
             user_data.append('password', this.new_u.password);
@@ -256,39 +269,53 @@ export default {
                 .then((r) => {
                     console.log(r.data)
                     this.getUsers();
+                    this.notification(id, 'Lietotājs ir veiksmīgi pieveinots!', 'success');
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.notification(id, e.response.data.message, 'error')
                 })
         },
-        deleteUser(){
-            axios.delete('/api/users/delete/' + this.user.data.id)
+        deleteUser() {
+            const isDark = useDark();
+            const id = toast.loading('Dzēšam lietotāju...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
+            axios.delete('/api/users/delete/' + this.current.id)
                 .then((res) => {
                     console.log(res)
                     this.getUsers()
                     this.toggleDelete(null);
+                    this.notification(id, 'Lietotājs ir veiksmīgi nodzēsts!', 'success');
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.notification(id, e.response.data.message, 'error')
                 })
         },
-        editUser(){
+        editUser() {
+            const isDark = useDark();
+            const id = toast.loading('Rediģējam lietotāju...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
             let user_data = new FormData();
             user_data.append('username', this.current.username);
             user_data.append('role', this.current.role);
-            user_data.append('oldpassword', this.current.oldpassword);
+            // user_data.append('oldpassword', this.current.oldpassword);
             user_data.append('newpassword', this.current.newpassword);
-            axios.post('/api/users/update/'+ this.user.data.id, user_data)
+            axios.post('/api/users/update/' + this.current.id, user_data)
                 .then((r) => {
                     console.log(r.data)
                     this.getUsers();
                     this.toggleEdit(null);
+                    this.notification(id, 'Lietotājs ir veiksmīgi norediģēts!', 'success');
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.notification(id, e.response.data.message, 'error')
                 })
         },
-        changePassword(){
+        changePassword() {
+            const isDark = useDark();
+            const id = toast.loading('Mainām paroli...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
             let password_data = new FormData();
             password_data.append('oldpassword', this.edituser.oldpassword);
             password_data.append('newpassword', this.edituser.newpassword);
@@ -297,9 +324,23 @@ export default {
                 console.log(r.data);
                 this.getUsers();
                 this.togglePass(null);
+                this.notification(id, 'Parole ir veiksmīgi nomainīta!', 'success');
             }).catch((err) => {
                 console.log(err);
+                this.notification(id, err.response.data.message, 'error');
             });
+        },
+        notification(id, msg, stat) {
+            toast.update(id, {
+                render: msg,
+                autoClose: true,
+                closeOnClick: true,
+                closeButton: true,
+                type: stat,
+                "transition": "slide",
+                isLoading: false,
+            });
+            toast.done(id);
         }
     },
 }
