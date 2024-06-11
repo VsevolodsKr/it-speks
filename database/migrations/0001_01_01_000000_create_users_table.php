@@ -12,6 +12,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        
+        Schema::dropIfExists('oauth_auth_codes');
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username');
@@ -41,7 +43,7 @@ return new class extends Migration {
 
         User::create([
             'username' => 'mechanical',
-            'role' => 0,
+            'role' => 1,
             'password' => Hash::make('password'),
         ]);
     }
@@ -53,6 +55,7 @@ return new class extends Migration {
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
+        
         Schema::dropIfExists('sessions');
     }
 };

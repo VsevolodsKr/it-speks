@@ -52,4 +52,29 @@ class UsersController extends Controller
             $user->save();
             return response()->json(['message' => 'User updated successfully!', 'data' => $user]);
     }
+
+    public function changePassword(string $id, Request $request){
+        $request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required',
+            'newpassword_repeat' => 'required',
+        ]);
+        $user = User::find($id);
+        if($user){
+            if(Hash::check($request->oldpassword, $user->password)){
+                if($request->newpassword == $request->newpassword_repeat){
+                    if($request->oldpassword != $request->newpassword){
+                        $user->password = Hash::make($request->newpassword);
+                        return response()->json(['message' => 'Password is changed successfully!', 'data' => $user]);
+                    }else{
+                        return response()->json(['error' => 'Old password is the same as new!', 'data' => $user]);
+                    }
+                }else{
+                    return response()->json(['error' => 'New passwords are not equal!', 'data' => $user]);
+                }
+            }else{
+                return response()->json(['error' => 'Old password is incorrect!', 'data' => $user]);
+            }
+        }
     }
+}

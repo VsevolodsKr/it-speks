@@ -46,3 +46,4 @@ Route::get('/users', [UsersController::class, 'index']);
 Route::post('/users/add', [UsersController::class, 'store']);
 Route::delete('/users/delete/{id}', [UsersController::class, 'delete']);
 Route::post('/users/update/{id}', [UsersController::class, 'update']);
+Route::post('/users/changePassword/{id}', [UsersController::class, 'changePassword']);

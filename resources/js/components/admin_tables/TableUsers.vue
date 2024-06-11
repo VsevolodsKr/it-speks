@@ -129,7 +129,7 @@
                 </td>
             </tr>
         </table>
-        <CustomButton :title="'Saglabāt'" />
+        <CustomButton :title="'Saglabāt'" @click="changePassword"/>
     </div>
 
 
@@ -262,7 +262,7 @@ export default {
                 })
         },
         deleteUser(){
-            axios.delete('/api/users/delete/' + this.current.id)
+            axios.delete('/api/users/delete/' + this.user.data.id)
                 .then((res) => {
                     console.log(res)
                     this.getUsers()
@@ -278,7 +278,7 @@ export default {
             user_data.append('role', this.current.role);
             user_data.append('oldpassword', this.current.oldpassword);
             user_data.append('newpassword', this.current.newpassword);
-            axios.post('/api/users/update/'+ this.current.id, user_data)
+            axios.post('/api/users/update/'+ this.user.data.id, user_data)
                 .then((r) => {
                     console.log(r.data)
                     this.getUsers();
@@ -288,6 +288,19 @@ export default {
                     console.error(err)
                 })
         },
+        changePassword(){
+            let password_data = new FormData();
+            password_data.append('oldpassword', this.edituser.oldpassword);
+            password_data.append('newpassword', this.edituser.newpassword);
+            password_data.append('newpassword_repeat', this.edituser.newpassword_repeat);
+            axios.post('/api/users/changePassword/' + this.user.data.id, password_data).then((r) => {
+                console.log(r.data);
+                this.getUsers();
+                this.togglePass(null);
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
     },
 }
 </script>
