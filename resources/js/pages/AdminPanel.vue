@@ -10,7 +10,7 @@
                 <h2 class="mb-5">Jūs esat: <span class="underline">{{ user.data.role == 1 ? "administrators" :
                     "moderators" }}</span>
                 </h2>
-                <CustomButton :title="'Izlogoties'" @click="logout" />
+                <CustomButton :title="'Izlogoties'" @click="toggleWarning" />
             </div>
         </div>
         <div class="flex justify-evenly flex-wrap gap-3 text-black dark:text-gray-50">
@@ -46,6 +46,17 @@
         <div v-if="current == 3" class="flex flex-col gap-12">
             <TableUsers :role="role" :user="user" />
         </div>
+
+
+        <!-- Hidden logout warning -->
+        <div
+            :class="[showWarning ? 'flex' : 'hidden', 'flex-col justify-between bg-white min-w-96 gap-8 rounded-xl ring-1 ring-gray-300 p-7 text-black dark:text-gray-50 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 shadow-xl dark:bg-zinc-700']">
+            <h1 class="font-bold text-xl text-center">Vai Jūs tiešām gribāt izlogoties no Jūsu konta?</h1>
+            <div class="grid grid-cols-2 gap-10">
+                <CustomButton :title="'Apstiprināt'" :red="true" @click="logout" />
+                <CustomButton :title="'Atcelt'" :gray="true" @click="toggleWarning" />
+            </div>
+        </div>
     </Wrapper>
 </template>
 <script>
@@ -65,7 +76,7 @@ export default {
         return {
             current: 0,
             imagename: null,
-
+            showWarning: false,
         }
     },
     components: {
@@ -84,6 +95,9 @@ export default {
             this.$store.commit('logout')
             this.$router.push('/login')
         },
+        toggleWarning() {
+            this.showWarning = !this.showWarning
+        }
     }
     // mounted() {
     //     console.log(this.user)

@@ -1,7 +1,3 @@
-<!-- 
- class="flex justify-around text-black dark:text-gray-50 max-[1024px]:flex-col max-[1024px]:md:flex-col max-[1024px]:items-center flex-wrap"> 
--->
-
 <template>
     <Wrapper>
         <div
@@ -51,17 +47,19 @@
                     <h1 class="text-left w-full">Komentāri</h1>
                     <textarea v-model="new_a.comments" col="30" rows="8" placeholder="Papildinformācija"
                         class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 resize-none bg-white dark:bg-zinc-700 w-full  shadow-md"></textarea>
-                    <CustomButton :title="'Pievienot dokumentu'" :gray="true" class="w-full mb-5" />
-                    <CustomButton :title="'Pieteikties'" :type="'submit'" class="w-full"/>
+                    <CustomButton :title="'Pieteikties'" :type="'submit'" class="w-full" />
                 </form>
             </div>
         </div>
+
     </Wrapper>
 </template>
 <script>
 import Wrapper from "../../components/Wrapper.vue"
 import CustomButton from "../../components/CustomButton.vue"
-
+import { useDark } from '@vueuse/core';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 export default {
     data() {
         return {
@@ -84,7 +82,6 @@ export default {
             await axios.get('/api/vacancies/' + this.$route.params.id)
                 .then((response) => {
                     this.current = response.data;
-
                     this.current.image_path = new URL(this.current.image_path, import.meta.url)
                     console.log(response)
                 })
@@ -93,21 +90,50 @@ export default {
                 });
         },
         add() {
+            const isDark = useDark();
+            const id = toast.loading('Nosūtam pieteikumu...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
             let app_data = new FormData();
             app_data.append('name', this.new_a.name);
             app_data.append('surname', this.new_a.surname);
             app_data.append('phone', this.new_a.phone);
             app_data.append('email', this.new_a.email);
             app_data.append('comments', this.new_a.comments);
+            app_data.append('date', this.new_a.date);
+            app_data.append('vacancy', this.$route.params.id);
             axios.post('/api/applications/add', app_data).then((r) => {
-                    console.log(r.app_data);
-                })
+                console.log(r.data);
+                this.notification(id, 'Jūsu pieteikums ir veiksmīgi nosūtīts!', 'success');
+                this.new_a = {
+                    name: '',
+                    surname: '',
+                    date: null,
+                    phone: '',
+                    email: '',
+                    comments: '',
+                }
+            })
                 .catch(error => {
                     console.error(error);
+                    this.notification(id, error.response.data.message, 'error');
                 });
-        }
-    },
 
+
+        },
+        notification(id, msg, stat) {
+            toast.update(id, {
+                render: msg,
+                autoClose: true,
+                closeOnClick: true,
+                closeButton: true,
+                type: stat,
+                "transition": "slide",
+                isLoading: false,
+            });
+            toast.done(id);
+        }
+
+    },
     components: {
         Wrapper,
         CustomButton,

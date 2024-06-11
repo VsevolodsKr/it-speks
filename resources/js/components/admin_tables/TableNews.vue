@@ -160,6 +160,9 @@
 </template>
 <script>
 import CustomButton from '../CustomButton.vue';
+import { useDark } from '@vueuse/core';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 export default {
     data: () => {
         return {
@@ -201,11 +204,13 @@ export default {
             this.showDelete = false
             this.current = n;
             this.file = null;
-            this.edit_n = {
-                'title': n.title,
-                'short_desc': n.short_desc,
-                'description': n.description,
-                'image_path': n.image_path,
+            if (n) {
+                this.edit_n = {
+                    'title': n.title,
+                    'short_desc': n.short_desc,
+                    'description': n.description,
+                    'image_path': n.image_path,
+                }
             }
         },
         toggleAdd() {
@@ -223,6 +228,10 @@ export default {
             this.file = null;
         },
         addNews() {
+            const isDark = useDark();
+            const id = toast.loading('Taisām jauno aktualitāti...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
+
             const config = {
                 headers: {
                     'description-Type': 'multipart/form-data'
@@ -240,9 +249,11 @@ export default {
                     console.log(r.data)
                     this.getNews();
                     this.file = null
+                    this.notification(id, 'Aktualitāte ir veiksmīgi pievienota!', 'success');
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.notification(id, err.response.data.message, 'error');
                 })
         },
         getNews() {
@@ -255,9 +266,14 @@ export default {
                 })
                 .catch((err) => {
                     console.error(err)
+
                 })
         },
         editNews() {
+            const isDark = useDark();
+            const id = toast.loading('Rediģējam aktualitāti...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
+
             const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -279,22 +295,40 @@ export default {
                     this.getNews()
                     this.file = null
                     this.toggleEdit(null)
+                    this.notification(id, 'Aktualitāte ir veiksmīgi norediģēta!', 'success');
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.notification(id, err.response.data.message, 'error');
                 })
         },
         deleteNews() {
+            const isDark = useDark();
+            const id = toast.loading('Dzēšam aktualitāti...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
             axios.delete('/api/news/delete/' + this.current.id)
                 .then((res) => {
                     console.log(res)
                     this.getNews()
                     this.toggleDelete(null);
+                    this.notification(id, 'Aktualitāte ir veiksmīgi dzēsta!', 'success');
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.notification(id, err.response.data.message, 'error');
                 })
         },
+        notification(id, msg, stat) {
+            toast.update(id, {
+                render: msg,
+                autoClose: true,
+                closeOnClick: true,
+                closeButton: true,
+                type: stat,
+                "transition": "slide",
+                isLoading: false,
+            });
+            toast.done(id);
+        }
 
     }
 }

@@ -228,6 +228,9 @@
 </template>
 <script>
 import CustomButton from '../CustomButton.vue';
+import { useDark } from '@vueuse/core';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 export default {
     data: () => {
@@ -264,6 +267,9 @@ export default {
         },
         add(e) {
             e.preventDefault()
+            const isDark = useDark();
+            const id = toast.loading('Taisām jauno vakanci...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
             const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -285,6 +291,8 @@ export default {
                     console.log(r.data)
                     this.getVacancies();
                     this.file = null
+                    this.notification(id, 'Vakance ir veiksmīgi pievienota!', 'success');
+
                 })
                 .catch((err) => {
                     console.error(err)
@@ -301,15 +309,18 @@ export default {
             this.showRead = false
 
             this.current = vac
-            this.edit_v = {
-                'title': vac.title,
-                'company': vac.company,
-                'time': vac.time,
-                'salary': vac.salary,
-                'location': vac.location,
-                'contacts': vac.contacts,
-                'description': vac.description,
-                'image_path': vac.image_path,
+            if (vac) {
+                this.edit_v = {
+                    'title': vac.title,
+                    'company': vac.company,
+                    'time': vac.time,
+                    'salary': vac.salary,
+                    'location': vac.location,
+                    'contacts': vac.contacts,
+                    'description': vac.description,
+                    'image_path': vac.image_path,
+                }
+
             }
             this.file = null
         },
@@ -336,20 +347,28 @@ export default {
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.notification(id, err.response.data.message, 'error');
                 })
         },
         deleteVacancy() {
+            const isDark = useDark();
+            const id = toast.loading('Dzēšam vakanci...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
             axios.delete('/api/vacancies/delete/' + this.current.id)
                 .then((res) => {
                     console.log(res)
                     this.getVacancies()
                     this.toggleDelete(null);
+                    this.notification(id, 'Vakance ir veiksmīgi nodzēsta!', 'success');
                 })
                 .catch((err) => {
+                    this.notification(id, err.response.data.message, 'error');
                     console.error(err)
                 })
         },
         editVacancy() {
+            const isDark = useDark();
+            const id = toast.loading('Rediģējam vakanci...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+
             const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -375,11 +394,25 @@ export default {
                     this.getVacancies()
                     this.file = null
                     this.toggleEdit(null)
+                    this.notification(id, 'Vakance ir veiksmīgi norediģēta!', 'success');
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.notification(id, err.response.data.message, 'error');
                 })
         },
+        notification(id, msg, stat) {
+            toast.update(id, {
+                render: msg,
+                autoClose: true,
+                closeOnClick: true,
+                closeButton: true,
+                type: stat,
+                "transition": "slide",
+                isLoading: false,
+            });
+            toast.done(id);
+        }
     }
 }
 </script>

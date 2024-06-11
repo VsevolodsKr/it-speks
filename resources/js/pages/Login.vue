@@ -6,14 +6,17 @@
                 class="flex flex-col items-center ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl bg-white">
                 <p class="text-center text-2xl mb-9 text-black dark:text-gray-50">Ieeja administratoriem un moderatoriem
                 </p>
-                <input type="text" v-model="login_form.username" placeholder="Lietotājvārds"
-                    class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md">
-                <input type="password" v-model="login_form.password" placeholder="Parole"
-                    class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md">
-                <div class="flex justify-center">
-                    <CustomButton :title="'Ielogoties'" @click="login" />
+                <form>
 
-                </div>
+                    <input type="text" v-model="login_form.username" placeholder="Lietotājvārds"
+                        class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md">
+                    <input type="password" v-model="login_form.password" placeholder="Parole"
+                        class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 dark:text-gray-50 w-full shadow-md">
+                    <div class="flex justify-center">
+                        <CustomButton :title="'Ielogoties'" @click="login" :type="'submit'" />
+
+                    </div>
+                </form>
             </div>
         </div>
     </Wrapper>
@@ -39,10 +42,10 @@ export default {
         CustomButton,
     },
     methods: {
-        login() {
-
+        login(e) {
+            e.preventDefault()
             const isDark = useDark();
-            const id = toast.loading('Please wait...', { "position": "top-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
+            const id = toast.loading('Notiek ielogošana...', { "position": "bottom-right", "transition": "slide", "theme": (isDark.value ? "dark" : "light") });
 
 
             let login_data = new FormData();
@@ -56,7 +59,7 @@ export default {
 
                     this.$store.commit("setUser", r.data.data);
 
-                    this.notification(id, 'Logged in successfully!', 'success');
+                    this.notification(id, 'Lietotājs ir veiksmīgi atrasts!', 'success');
 
                     setTimeout(() => {
                         this.$router.push('/admin', login_data);
