@@ -8,9 +8,9 @@
                         }}</span>!
                 </h2>
                 <h2 class="mb-5">Jūs esat: <span class="underline">{{ user.data.role == 1 ? "administrators" :
-                        "moderators" }}</span>
+                    "moderators" }}</span>
                 </h2>
-                <CustomButton :title="'Izlogoties'" />
+                <CustomButton :title="'Izlogoties'" @click="logout" />
             </div>
         </div>
         <div class="flex justify-evenly flex-wrap gap-3 text-black dark:text-gray-50">
@@ -56,6 +56,10 @@ import TableNews from '../components/admin_tables/TableNews.vue';
 import TableUsers from '../components/admin_tables/TableUsers.vue';
 import { mapState } from 'vuex/dist/vuex.cjs.js';
 import CustomButton from '../components/CustomButton.vue';
+
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+import { useDark } from '@vueuse/core';
 export default {
     data: () => {
         return {
@@ -75,6 +79,12 @@ export default {
     computed: {
         ...mapState(['user']),
     },
+    methods: {
+        logout() {
+            this.$store.commit('logout')
+            this.$router.push('/login')
+        },
+    }
     // mounted() {
     //     console.log(this.user)
     // }
