@@ -34,4 +34,14 @@ class ApplicationsController extends Controller
         $application->save();
         return response()->json(['message' => 'Your application has been sent!', 'data' => $application]);
     }
+
+    public function changeStatus(string $id, Request $request){
+        $application = Applications::find($id);
+        if($application){
+            $application->status = $request->status;
+            $application->save();
+            return response()->json(['message' => 'Status has been changed!', 'data' => $application]);
+        }
+        return response()->json(['message' => 'Application was not found!'], 500);
+    }
 }

@@ -92,7 +92,7 @@
                 </td>
             </tr>
         </table>
-        <CustomButton :title="'Saglabāt'" />
+        <CustomButton :title="'Saglabāt'" @click="changeStatus"/>
     </div>
 </template>
 <script>
@@ -101,6 +101,7 @@ import CustomButton from '../CustomButton.vue';
 export default {
     data: () => {
         return {
+            current: null,
             applications: [],
             statenames: [
                 { title: 'Iesniegts' },
@@ -144,6 +145,7 @@ export default {
         toggleEdit(a) {
             this.showEdit = !this.showEdit;
             this.save(a);
+            this.current = a;
         },
         save(a) {
             this.name = a.name;
@@ -153,6 +155,17 @@ export default {
             this.email = a.email;
             this.text = a.comments;
             this.state = a.status;
+        },
+        changeStatus(){
+            let status_data = new FormData();
+            status_data.append('status', this.state);
+            axios.post('/api/applications/changeStatus/' + this.current.id, status_data).then((r) => {
+                this.getApplications();
+                console.log(r)
+                this.showEdit = false;
+            }).catch((err) => {
+                console.error(err);
+            });
         },
     }
 }

@@ -35,6 +35,7 @@ Route::delete('/news/delete/{id}', [NewsController::class, 'delete']);
 //applications
 Route::get('/applications', [ApplicationsController::class, 'index']);
 Route::post('/applications/add', [ApplicationsController::class, 'store']);
+Route::post('/applications/changeStatus/{id}', [ApplicationsController::class, 'changeStatus']);
 
 
 //login
