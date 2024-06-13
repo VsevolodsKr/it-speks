@@ -39,7 +39,11 @@ const routes = [
         component: AdminPanel,
         meta: { requiresAuth: true },
     },
-    { path: "/vacancies/:id", component: Vacancy, meta: { guest: true } },
+    {
+        path: "/vacancies/:id",
+        component: Vacancy,
+        meta: { guest: true },
+    },
 
     { path: "/news/:id", component: New, meta: { guest: true } },
 ];
@@ -65,16 +69,17 @@ router.beforeEach((to, from, next) => {
         } else {
             next();
         }
-    } else if (to.matched.some((record) => record.meta.guest)) {
-        // Redirect to dashboard if already logged in
-        if (loggedIn()) {
-            next({
-                path: "/admin",
-                query: { redirect: to.fullPath },
-            });
-        } else {
-            next();
-        }
+        // } else if (to.matched.some((record) => record.meta.guest)) {
+        //     // Redirect to dashboard if already logged in
+        //     if (loggedIn()) {
+        //         next({
+        //             path: "/admin",
+        //             query: { redirect: to.fullPath },
+        //         });
+        //     } else {
+        //         next();
+        //     }
+        // }
     } else {
         next();
     }
