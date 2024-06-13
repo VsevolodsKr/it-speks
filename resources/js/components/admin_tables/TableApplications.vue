@@ -11,6 +11,7 @@
                         <th>Datums</th>
                         <th>Tālrunis</th>
                         <th>E-pasts</th>
+                        <th>Vakance</th>
                         <th>Komentāri</th>
                         <th>Statuss</th>
                     </tr>
@@ -21,6 +22,8 @@
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.birth_date }}</td>
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.phone }}</td>
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{ a.email }}</td>
+                        <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{
+                            getVacancy(a.vacancy).title }}</td>
                         <td class="py-3 text-center border-r-2 border-gray-300 border-dashed">
                             <button
                                 class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
@@ -28,7 +31,7 @@
                         </td>
                         <td class="px-5 text-center border-r-2 border-gray-300 border-dashed">{{
                             statenames[a.status].title
-                        }}
+                            }}
                         </td>
                         <td class="p-3 text-center">
                             <button
@@ -42,67 +45,76 @@
     </div>
 
     <!-- hidden READ menu -->
-    <div v-if="showRead"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96  text-black dark:text-gray-50 dark:bg-zinc-700">
-        <div class="flex justify-between">
-            <h1 class="font-bold text-xl">{{ name }} {{ surname }}</h1>
-            <button @click="toggleRead" class="text-3xl transition-colors hover:text-emerald-600"><i
-                    class="fa-regular fa-circle-xmark"></i></button>
+    <Fade>
+        <div v-if="showRead"
+            class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96  text-black dark:text-gray-50 dark:bg-zinc-700">
+            <div class="flex justify-between">
+                <h1 class="font-bold text-xl">{{ name }} {{ surname }}</h1>
+                <button @click="toggleRead" class="text-3xl transition-colors hover:text-emerald-600"><i
+                        class="fa-regular fa-circle-xmark"></i></button>
+            </div>
+            <p>{{ text }}</p>
         </div>
-        <p>{{ text }}</p>
-    </div>
+    </Fade>
 
 
     <!-- hidden EDIT menu -->
-    <div v-if="showEdit"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center text-black dark:text-gray-50 dark:bg-zinc-700">
-        <div class="flex justify-between w-full">
-            <h1 class="font-bold text-xl">{{ name }} {{ surname }}</h1>
-            <button @click="toggleEdit" class="text-3xl transition-colors hover:text-emerald-600">
-                <i class="fa-regular fa-circle-xmark"></i>
-            </button>
+    <Fade>
+        <div v-if="showEdit"
+            class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center text-black dark:text-gray-50 dark:bg-zinc-700">
+            <div class="flex justify-between w-full">
+                <h1 class="font-bold text-xl">{{ name }} {{ surname }}</h1>
+                <button @click="toggleEdit" class="text-3xl transition-colors hover:text-emerald-600">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+            </div>
+            <table>
+                <tr>
+                    <td class="font-bold">Datums</td>
+                    <td>{{ date }}</td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Tālrunis</td>
+                    <td>{{ phone }}</td>
+                </tr>
+                <tr>
+                    <td class="font-bold">E-pasts</td>
+                    <td>{{ email }}</td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Vakance</td>
+                    <td>{{ getVacancy(vacancy).title }}</td>
+                </tr>
+                <tr>
+                    <td class="pr-5 font-bold">Komentārs</td>
+                    <td>{{ text }}</td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Statuss</td>
+                    <td>
+                        <form action="">
+                            <select v-model="state"
+                                class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
+                                <option v-for="el, index in statenames" :key="index" :value="index">{{ el.title }}
+                                </option>
+                            </select>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            <CustomButton :title="'Saglabāt'" @click="changeStatus" />
         </div>
-
-        <table>
-            <tr>
-                <td class="font-bold">Datums</td>
-                <td>{{ date }}</td>
-            </tr>
-            <tr>
-                <td class="font-bold">Tālrunis</td>
-                <td>{{ phone }}</td>
-            </tr>
-            <tr>
-                <td class="font-bold">E-pasts</td>
-                <td>{{ email }}</td>
-            </tr>
-            <tr>
-                <td class="pr-5 font-bold">Komentārs</td>
-                <td>{{ text }}</td>
-            </tr>
-            <tr>
-                <td class="font-bold">Statuss</td>
-                <td>
-                    <form action="">
-                        <select v-model="state"
-                            class="ring-2 ring-gray-200 rounded-md px-4 py-3 my-4 bg-white dark:bg-zinc-700 text-black dark:text-gray-50">
-                            <option v-for="el, index in statenames" :key="index" :value="index">{{ el.title }}</option>
-                        </select>
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <CustomButton :title="'Saglabāt'" @click="changeStatus"/>
-    </div>
+    </Fade>
 </template>
 <script>
-
+import Fade from '../Fade.vue';
 import CustomButton from '../CustomButton.vue';
 export default {
     data: () => {
         return {
             current: null,
             applications: [],
+            vacancies: [],
             statenames: [
                 { title: 'Iesniegts' },
                 { title: 'Apstiprināts' },
@@ -116,6 +128,7 @@ export default {
             email: '',
             text: '',
             state: '',
+            vacancy: null,
             showRead: false,
             showEdit: false,
             showDelete: false,
@@ -123,11 +136,25 @@ export default {
     },
     mounted() {
         this.getApplications();
+        this.getVacancies();
     },
     components: {
         CustomButton,
+        Fade,
     },
     methods: {
+        getVacancy(id) {
+            return this.vacancies.find(vacancy => vacancy.id === id);
+        },
+        getVacancies() {
+            axios.get('api/vacancies')
+                .then((response) => {
+                    this.vacancies = response.data;
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        },
         getApplications() {
             axios.get('/api/applications')
                 .then((response) => {
@@ -155,8 +182,9 @@ export default {
             this.email = a.email;
             this.text = a.comments;
             this.state = a.status;
+            this.vacancy = a.vacancy;
         },
-        changeStatus(){
+        changeStatus() {
             let status_data = new FormData();
             status_data.append('status', this.state);
             axios.post('/api/applications/changeStatus/' + this.current.id, status_data).then((r) => {

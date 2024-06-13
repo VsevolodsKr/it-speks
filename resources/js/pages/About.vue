@@ -6,7 +6,12 @@
                 <div
                     class="a flex justify-between gap-28 max-md:flex-col lg:flex-row items-center text-black dark:text-gray-50 max-w-7xl">
                     <div>
-                        <h1 class="font-bold text-3xl">Par mums</h1>
+                        <div class="flex">
+                            <h1
+                                class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">
+                                Par mums</h1>
+
+                        </div>
                         <p class="my-5">ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet
                             purus
                             gravida quis blandit turpis cursus in hac habitasse platea dictumst quisque sagittis purus

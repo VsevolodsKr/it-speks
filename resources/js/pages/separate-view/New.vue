@@ -1,10 +1,17 @@
 <template>
     <Wrapper>
-        <h1 v-if="current" class="font-bold text-3xl text-center text-black dark:text-gray-50">{{ current.title }}</h1>
-        <div v-if="current">
-            <img :src="this.current.image_path"
-                class="float-left max-w-96 mr-16 rounded-xl shadow-md dark:ring-1 dark:ring-zinc-700">
-            <p class="text-justify mx-16 leading-7 indent-16 text-black dark:text-gray-50">{{ current.description }}</p>
+        <div class="flex flex-wrap gap-5">
+            <img v-if="current" :src="this.current.image_path"
+                class="max-w-96 mr-16 rounded-xl shadow-md dark:ring-1 dark:ring-zinc-700">
+            <div v-if="current"
+                class="bg-white ring-1 max-w-6xl ring-gray-300 rounded-md shadow-xl py-10 px-7 dark:bg-zinc-700">
+                <h1 v-if="current" class="font-bold text-3xl mx-16 text-black dark:text-gray-50 mb-5">{{
+                    current.title
+                    }}
+                </h1>
+                <p class="text-justify leading-7 indent-16 text-black dark:text-gray-50">{{ current.description }}
+                </p>
+            </div>
         </div>
     </Wrapper>
 </template>

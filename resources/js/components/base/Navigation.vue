@@ -23,7 +23,7 @@
                     user.data.username ?
                         user.data.username : 'Ielogoties' }}</router-link>
             <button><i @click="toggleDark()"
-                    :class="[!isDark ? 'fa-solid fa-moon text-indigo-950 hover:text-indigo-500' : 'fa-regular fa-sun text-white hover:text-orange-100', 'text-3xl  ring-1 ring-gray-300 py-2 px-4 rounded-3xl  hover:shadow-xl ml-6 active:bg-gray-100 transition-all']"></i></button>
+                    :class="[!isDark ? 'fa-solid fa-moon' : 'fa-regular fa-sun', 'text-3xl text-calm-green hover:text-emerald-600 ring-1 ring-gray-300 py-2 px-4 rounded-3xl  hover:shadow-xl ml-6 active:bg-gray-100 transition-all']"></i></button>
         </div>
 
     </nav>
@@ -36,7 +36,7 @@
         <router-link to="/news">Aktualitātes</router-link>
         <router-link to="/login">Ielogoties</router-link>
         <button><i @click="toggleDark()"
-                :class="[!isDark ? 'fa-solid fa-moon text-indigo-950 hover:text-indigo-500' : 'fa-regular fa-sun text-white hover:text-orange-100', 'text-3xl  ring-1 ring-gray-300 py-2 px-4 rounded-3xl  hover:shadow-xl active:bg-gray-100 transition-all']"></i></button>
+                :class="[!isDark ? 'fa-solid fa-moon text-indigo-950 hover:text-indigo-500' : 'fa-regular fa-sun text-white hover:text-orange-100', 'text-3xl text-calm-green  ring-1 ring-gray-300 py-2 px-4 rounded-3xl  hover:shadow-xl active:bg-gray-100 transition-all']"></i></button>
     </div>
 </template>
 <script setup>

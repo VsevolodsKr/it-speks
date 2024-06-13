@@ -1,6 +1,9 @@
 <template>
     <Wrapper>
-        <h1 class="text-3xl font-bold text-center text-black dark:text-gray-50">Aktualitātes</h1>
+        <div class="flex justify-center">
+            <h1 class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">Aktualitātes
+            </h1>
+        </div>
         <div class="flex justify-center">
             <div class="flex flex-col gap-5 max-w-6xl">
                 <NewsBlock v-for="n in news" :data="n" :route="'news'" />

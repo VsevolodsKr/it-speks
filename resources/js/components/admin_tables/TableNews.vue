@@ -26,17 +26,17 @@
 
                     <td class="text-center border-r-2 border-gray-300 border-dashed p-2">
                         <button
-                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            class="dark:text-emerald-400 hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                             @click="toggleRead(n)"><i class="fa-solid fa-book-open"></i></button>
                     </td>
                     <td class="text-center border-r-2 border-gray-300 border-dashed p-2">
                         <button
-                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            class="hover:bg-emerald-800 ring-1 dark:text-emerald-400 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                             @click="toggleEdit(n)"><i class="fa-solid fa-pen-to-square text-xl"></i></button>
                     </td>
                     <td class="text-center p-2">
                         <button
-                            class="hover:bg-emerald-800 ring-1 ring-gray-300 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
+                            class="hover:bg-emerald-800 ring-1 ring-gray-300 dark:text-emerald-400 text-emerald-800 hover:text-white font-bold rounded-md px-4 py-2 hover:shadow-md transition-all "
                             @click="toggleDelete(n)"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
@@ -44,125 +44,131 @@
         </div>
     </div>
     <!-- hidden DELETE menu -->
-    <div v-if="showDelete"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-zinc-700">
-        <div class="flex justify-between">
-            <h1 class="font-bold text-xl">Nodzēst {{ current.title }}</h1>
-            <button @click="toggleDelete" class="text-3xl transition-colors hover:text-emerald-600"><i
-                    class="fa-regular fa-circle-xmark"></i></button>
+    <Fade>
+        <div v-if="showDelete"
+            class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-zinc-700">
+            <div class="flex justify-between">
+                <h1 class="font-bold text-xl">Nodzēst {{ current.title }}</h1>
+                <button @click="toggleDelete" class="text-3xl transition-colors hover:text-emerald-600"><i
+                        class="fa-regular fa-circle-xmark"></i></button>
+            </div>
+            <h3 class="mt-5">{{ current.short_desc }}</h3>
+            <h3 class="font-bold text-center my-4">Vai Jūs tiešām gribāt nodzēst "{{ current.title }}"?</h3>
+            <div class="flex justify-center gap-4 mt-12">
+                <CustomButton :title="'Apstiprināt'" :red="true" @click="deleteNews" />
+                <CustomButton @click="toggleDelete" :title="'Atcelt'" :gray="true" />
+            </div>
         </div>
-        <h3 class="mt-5">{{ current.short_desc }}</h3>
-        <h3 class="font-bold text-center my-4">Vai Jūs tiešām gribāt nodzēst "{{ current.title }}"?</h3>
-        <div class="flex justify-center gap-4 mt-12">
-            <CustomButton :title="'Apstiprināt'" :red="true" @click="deleteNews" />
-            <CustomButton @click="toggleDelete" :title="'Atcelt'" :gray="true" />
-        </div>
-    </div>
+    </Fade>
 
     <!-- hidden READ menu -->
-    <div v-if="showRead"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-zinc-700">
-        <div class="flex justify-between">
-            <h1 class="font-bold text-xl">{{ current.title }}</h1>
-            <button @click="toggleRead" class="text-3xl transition-colors hover:text-emerald-600"><i
-                    class="fa-regular fa-circle-xmark"></i></button>
+    <Fade>
+        <div v-if="showRead"
+            class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 text-black dark:text-gray-50 dark:bg-zinc-700">
+            <div class="flex justify-between">
+                <h1 class="font-bold text-xl">{{ current.title }}</h1>
+                <button @click="toggleRead" class="text-3xl transition-colors hover:text-emerald-600"><i
+                        class="fa-regular fa-circle-xmark"></i></button>
+            </div>
+            <h3>{{ current.short_desc }}</h3>
+            <p>{{ current.description }}</p>
         </div>
-        <h3>{{ current.short_desc }}</h3>
-        <p>{{ current.description }}</p>
-    </div>
+    </Fade>
 
 
     <!-- hidden EDIT menu -->
-    <div v-if="showEdit"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-zinc-700">
-        <div class="flex justify-between w-full">
-            <h1 class="font-bold text-xl">Rediģēt "{{ current.title }}"</h1>
-            <button @click="toggleEdit" class="text-3xl transition-colors hover:text-emerald-600">
-                <i class="fa-regular fa-circle-xmark"></i>
-            </button>
+    <Fade>
+        <div v-if="showEdit"
+            class="ring-1 z-50 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-zinc-700">
+            <div class="flex justify-between w-full">
+                <h1 class="font-bold text-xl">Rediģēt "{{ current.title }}"</h1>
+                <button @click="toggleEdit" class="text-3xl transition-colors hover:text-emerald-600">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+            </div>
+            <table>
+                <tr>
+                    <td class="font-bold">Nosaukums</td>
+                    <td class="p-4">
+                        <input type="text" v-model="edit_n.title"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Īss apraksts</td>
+                    <td class="p-4">
+                        <textarea v-model="edit_n.short_desc"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Apraksts</td>
+                    <td class="p-4">
+                        <textarea v-model="edit_n.description"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Attēls</td>
+                    <td class="p-4">
+                        <input type="file" @change="handleFileChange" required />
+                    </td>
+                </tr>
+            </table>
+            <CustomButton :title="'Saglabāt'" @click="editNews" />
         </div>
-
-        <table>
-            <tr>
-                <td class="font-bold">Nosaukums</td>
-                <td class="p-4">
-                    <input type="text" v-model="edit_n.title"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Īss apraksts</td>
-                <td class="p-4">
-                    <textarea v-model="edit_n.short_desc"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Apraksts</td>
-                <td class="p-4">
-                    <textarea v-model="edit_n.description"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Attēls</td>
-                <td class="p-4">
-                    <input type="file" @change="handleFileChange" required />
-                </td>
-            </tr>
-        </table>
-        <CustomButton :title="'Saglabāt'" @click="editNews" />
-    </div>
+    </Fade>
 
 
     <!-- hidden ADD menu -->
-    <div v-if="showAdd"
-        class="ring-1 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-zinc-700">
-        <div class="flex justify-between w-full">
-            <h1 class="font-bold text-xl">Pievienot aktualitāti</h1>
-            <button @click="toggleAdd" class="text-3xl transition-colors hover:text-emerald-600">
-                <i class="fa-regular fa-circle-xmark"></i>
-            </button>
+    <Fade>
+        <div v-if="showAdd"
+            class="ring-1 z-50 ring-gray-300 rounded-md p-5 shadow-xl max-w-5xl fixed  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white min-w-96 flex flex-col items-center overflow-y-scroll max-h-screen text-black dark:text-gray-50 dark:bg-zinc-700">
+            <div class="flex justify-between w-full">
+                <h1 class="font-bold text-xl">Pievienot aktualitāti</h1>
+                <button @click="toggleAdd" class="text-3xl transition-colors hover:text-emerald-600">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+            </div>
+            <table>
+                <tr>
+                    <td class="font-bold">Nosaukums</td>
+                    <td class="p-4">
+                        <input type="text" v-model="new_n.title"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Īss apraksts</td>
+                    <td class="p-4">
+                        <textarea v-model="new_n.short_desc"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Apraksts</td>
+                    <td class="p-4">
+                        <textarea v-model="new_n.description"
+                            class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Attēls</td>
+                    <td class="p-4">
+                        <input type="file" @change="handleFileChange" required />
+                    </td>
+                </tr>
+            </table>
+            <CustomButton :title="'Saglabāt'" @click="addNews" />
         </div>
-
-        <table>
-            <tr>
-                <td class="font-bold">Nosaukums</td>
-                <td class="p-4">
-                    <input type="text" v-model="new_n.title"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700">
-                </td>
-            </tr>
-
-            <tr>
-                <td class="font-bold">Īss apraksts</td>
-                <td class="p-4">
-                    <textarea v-model="new_n.short_desc"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Apraksts</td>
-                <td class="p-4">
-                    <textarea v-model="new_n.description"
-                        class="ring-1 ring-gray-300 rounded-md px-3 py-2 text-black dark:text-gray-50 dark:bg-zinc-700"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="font-bold">Attēls</td>
-                <td class="p-4">
-                    <input type="file" @change="handleFileChange" required />
-                </td>
-            </tr>
-        </table>
-        <CustomButton :title="'Saglabāt'" @click="addNews" />
-    </div>
+    </Fade>
 </template>
 <script>
 import CustomButton from '../CustomButton.vue';
 import { useDark } from '@vueuse/core';
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import Fade from '../Fade.vue';
 export default {
     data: () => {
         return {
@@ -183,6 +189,7 @@ export default {
     },
     components: {
         CustomButton,
+        Fade,
     },
     mounted() {
         this.getNews();

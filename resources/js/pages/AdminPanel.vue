@@ -1,6 +1,10 @@
 <template>
     <Wrapper>
-        <h1 class="text-4xl text-center font-bold text-black dark:text-gray-50">Administracijas panelis</h1>
+        <div class="flex justify-center">
+            <h1 class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">
+                Administracijas panelis</h1>
+
+        </div>
         <div class="flex justify-center">
             <div
                 class="text-center font-bold text-black dark:text-gray-50 ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl bg-white w-fit">

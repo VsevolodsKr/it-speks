@@ -6,7 +6,12 @@
             <!-- col1 -->
             <div>
                 <!-- title -->
-                <h1 class="font-bold text-3xl">Laipni lūdzam!</h1>
+
+                <div class="flex ">
+                    <h1 class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">
+                        Laipni lūdzam!</h1>
+
+                </div>
                 <!-- description -->
                 <p class="my-5">ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus
                     gravida quis
@@ -34,7 +39,11 @@
 
         <!-- row 2 -->
         <div class="text-black dark:text-gray-50">
-            <h1 class="font-bold text-3xl text-center">Jaunākas vakances</h1>
+            <div class="flex justify-center">
+                <h1 class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">Jaunākas
+                    vakances</h1>
+
+            </div>
 
             <div class="flex justify-evenly my-8 max-[768px]:flex-col gap-5 md:flex-col items-center 2xl:flex-row">
                 <Block v-for="vac in threeVac" :data="vac" :route="'vacancies'" :btnTitle="'Pieteikties'" />
@@ -76,7 +85,11 @@
 
         <!-- row 4 -->
         <div class="text-black dark:text-gray-50">
-            <h1 class="font-bold text-3xl text-center">Jaunākas aktualitātes</h1>
+            <div class="flex justify-center">
+                <h1 class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">Jaunākas
+                    aktualitātes</h1>
+
+            </div>
 
             <div class="flex justify-evenly my-8 max-[768px]:flex-col gap-5 md:flex-col items-center 2xl:flex-row">
                 <Block v-for="akt in threeAkt" :route="'news'" :data="akt" :btnTitle="'Apskatit'" />

@@ -1,6 +1,9 @@
 <template>
     <Wrapper>
-        <h1 class="text-3xl font-bold text-center dark:text-gray-50 text-black">Vakances</h1>
+        <div class="flex justify-center">
+            <h1 class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">Vakances</h1>
+
+        </div>
         <div class="flex flex-wrap justify-center">
             <CustomButton :title="'Notirīt'" @click="clear" />
         </div>

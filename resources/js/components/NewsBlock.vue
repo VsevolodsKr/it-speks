@@ -1,11 +1,16 @@
 <template>
     <div
-        class="ring-1 ring-gray-300 p-8 py-10 rounded-xl flex gap-36 flex-wrap w-full text-black dark:text-gray-50 bg-white dark:bg-zinc-700 justify-between shadow-md">
+        class="ring-1 ring-gray-300 p-8 py-10 rounded-xl flex gap-5 flex-wrap w-full text-black dark:text-gray-50 bg-white dark:bg-zinc-700 justify-between shadow-md">
         <!-- col 1 -->
-        <div class="flex flex-col justify-between items-start ">
+        <!-- <h1 class="font-bold text-4xl">{{ data.title }}</h1> -->
+        <div class="flex justify-center">
+            <h1 class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">
+                {{ data.title }}</h1>
+
+        </div>
+        <div class="flex flex-col justify-between items-start  max-w-2xl">
             <div class="">
-                <h1 class="font-bold text-4xl mb-8">{{ data.title }}</h1>
-                <p class="leading-loose my-5 ">{{ data.short_desc }}</p>
+                <p class="leading-loose ">{{ data.short_desc }}</p>
             </div>
             <CustomButton :title="'Lasīt vairāk'"
                 @click="this.$router.push('/' + route + '/' + data.id); scrollToTop();" />

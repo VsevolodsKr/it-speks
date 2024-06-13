@@ -1,7 +1,11 @@
 <template>
     <Wrapper>
-        <div class="flex flex-col items-center">
-            <h1 class="font-bold text-3xl text-center text-black dark:text-gray-50 mb-10">Ielogoties</h1>
+        <div class="flex flex-col items-center ">
+            <div class="flex justify-center mb-5">
+                <h1 class="font-bold text-3xl text-center bg-calm-green rounded-xl shadow-md p-4 text-gray-50">
+                    Ielogoties</h1>
+
+            </div>
             <div
                 class="flex flex-col items-center ring-1 ring-gray-300 rounded-xl p-10 dark:bg-zinc-700 shadow-xl bg-white">
                 <p class="text-center text-2xl mb-9 text-black dark:text-gray-50">Ieeja administratoriem un moderatoriem
